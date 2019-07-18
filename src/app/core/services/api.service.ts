@@ -5,7 +5,6 @@ import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { UserService } from './user.service';
 import { Subject, Observable } from 'rxjs';
 
 export const apiNotifier = new Subject();
@@ -25,7 +24,6 @@ export class ApiService {
     private router: Router,
     private toasterService: ToastrService,
     private authService: AuthService,
-    private userService: UserService
   ) {
    }
 
@@ -95,7 +93,6 @@ export class ApiService {
       }
     } else if (data.error.statusCode === 401) {
       this.authService.logout(false);
-      this.userService.displayPopup('sign-in');
     } else if (data.error.statusCode === 403) {
       this.authService.logout(false);
       if (data.error.message && data.error.message !== '') {

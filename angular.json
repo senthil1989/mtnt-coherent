@@ -31,9 +31,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
+              "node_modules/owl.carousel/dist/assets/owl.carousel.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -147,10 +145,7 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
+              "src/assets/scss/main.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
