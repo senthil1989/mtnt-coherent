@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');

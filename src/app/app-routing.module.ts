@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'vehicleRegistration',
+    loadChildren: './modules/vehicle-registration/vehicle-registration.module#VehicleRegistrationModule'
   }
 ];
 

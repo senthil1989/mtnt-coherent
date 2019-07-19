@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <h2 class="text-center">Vehicle Registration</h2></div>
+<div class="well">
+  <h3>Period Duration</h3>
+  <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker><span> to </span>
+  <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
+</div>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-4">
+          <h1>Vendor Details </h1>
+          <div class="row">
+              <div class="col-md-12"><span>Vendor Name</span>
+                  <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Dropdown <span class="caret"></span></button>
+                      <ul class="dropdown-menu" role="menu">
+                          <li role="presentation"><a href="#">First Item</a></li>
+                          <li role="presentation"><a href="#">Second Item</a></li>
+                          <li role="presentation"><a href="#">Third Item</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-md-12"><span>Vendor Contact </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-12"><span>Logistics Contact </span>
+                  <input type="text">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+          <h1>Vehicle Details</h1>
+          <div class="row">
+              <div class="col-md-6"><span>Vehiicle Number </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-6"><span>Insurance Number </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-6"><span>Chassis Number </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-6"><span>Road-Worthy Number </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-6"><span>Type Of Vehicle </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-6"><span>Form C or Form A </span>
+                  <input type="text">
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+          <h1>Driver Details </h1>
+          <div class="row">
+              <div class="col-md-12"><span>Driver Name (Optional)</span>
+                  <input type="text">
+              </div>
+              <div class="col-md-12"><span>Driver Contact (Optional) </span>
+                  <input type="text">
+              </div>
+              <div class="col-md-12"><span>License Number (Optional)</span>
+                  <input type="text">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+          <div class="row">
+              <div class="col-md-12">
+                  <h1>Driver Details </h1></div>
+              <div class="col-md-12"><span>Generate QR</span>
+                  <button class="btn btn-default" type="button">Button</button>
+              </div>
+              <div class="col-md-12"><span>Generate QR</span>
+                  <input type="text">
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
