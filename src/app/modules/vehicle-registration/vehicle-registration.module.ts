@@ -8,6 +8,7 @@ import { AuthGuard } from '../../core/guards/auth.guard';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { VehicleRegistrationComponent } from './vehicle-registration.component';
 import { VehicleRegistrationRoutingModule } from './vehicle-registration.routing';
@@ -21,7 +22,8 @@ import { VehicleRegistrationRoutingModule } from './vehicle-registration.routing
     RouterModule,
     LazyLoadImagesModule,
     VehicleRegistrationRoutingModule,
-    AngularMyDatePickerModule
+    AngularMyDatePickerModule,
+    ReactiveFormsModule
   ],
   declarations: [
     VehicleRegistrationComponent,
