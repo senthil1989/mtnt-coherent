@@ -26,6 +26,13 @@ i.fa{
     width: 120px;
     display: inline-block;
     height: 30px;
+    text-align:center;
+    background-color: #b3b3b3;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: 500;
 }
 .seasonDate span{
     padding: 0 15px;
@@ -81,6 +88,26 @@ label{
     color:#018295;
 }
 
+.formLabel label{
+    color:#868686;
+    font-weight: 500;
+}
+
 .invalid-feedback {
-    color: #c34747;
+    color: #E74C3C;
+    font-size: 10px;
+    transition: ease-in-out .15s;
+}
+
+.form-control-input {
+    border: none !important; 
+    box-shadow: none !important;
+}
+
+.font-weight-600 {
+    font-weight: 600 !important;
+}
+
+lib-angular-mydatepicker-calendar {
+    position: absolute !important;
 }
