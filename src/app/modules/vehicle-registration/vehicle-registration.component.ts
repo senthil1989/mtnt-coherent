@@ -16,28 +16,28 @@ export class VehicleRegistrationComponent implements OnInit {
     dateRange: false,
     dateFormat: 'dd-mm-yyyy',
     stylesData: {
-            selector: 'dp1',
-            styles: `
+      selector: 'dp1',
+      styles: `
                 .dp1 {
                     position: absolute !important;
                     top : 0px;
                     left : -121px;
                 }`
-        }
-        };
+    }
+  };
   public myDatePickerOptions2 = {
     dateRange: false,
     dateFormat: 'dd-mm-yyyy',
     stylesData: {
-            selector: 'dp1',
-            styles: `
+      selector: 'dp1',
+      styles: `
                 .dp1 {
                     position: absolute !important;
                     top : 0px;
                     left : -120px;
                 }`
-        },
-        disableUntil : {}
+    },
+    disableUntil: {}
   };
   public registerForm: FormGroup;
   public submitted = false;
@@ -46,9 +46,11 @@ export class VehicleRegistrationComponent implements OnInit {
   public selectedStartDate: Date;
   public desiredDevice: any = null;
   public capturingDeviceFound = false;
+  public scannerEnabled = false;
+  deviceList: any;
   constructor(private formBuilder: FormBuilder,
-              private apiService: ApiService,
-              private modalService: ModalService) { }
+    private apiService: ApiService,
+    private modalService: ModalService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -66,7 +68,7 @@ export class VehicleRegistrationComponent implements OnInit {
       driverContact: [''],
       licenseNumber: [''],
 
-  });
+    });
     this.initDateModesls(new Date());
     this.apiService.callGetAPI('../../../assets/json/vendorList.json').subscribe(data => {
       this.vendorList = data['vendorList'];
@@ -76,30 +78,31 @@ export class VehicleRegistrationComponent implements OnInit {
 
   openModal(id: string) {
     this.modalService.open(id);
+    this.scannerEnabled = true;
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
   }
 
- get f() { return this.registerForm.controls; }
+  get f() { return this.registerForm.controls; }
 
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid) {
-        return;
+      return;
     }
 
     console.log(this.registerForm.value);
-}
+  }
 
   initDateModesls(date: Date) {
     this.selectedStartDate = new Date();
-    this.startDateModel = {isRange: false, singleDate: {jsDate: this.selectedStartDate}, dateRange: null};
+    this.startDateModel = { isRange: false, singleDate: { jsDate: this.selectedStartDate }, dateRange: null };
     const d: Date = date;
     d.setDate(d.getDate() + 2);
     this.selectedEndDate = d;
-    this.endDateModel = {isRange: false, singleDate: {jsDate: this.selectedEndDate}, dateRange: null};
+    this.endDateModel = { isRange: false, singleDate: { jsDate: this.selectedEndDate }, dateRange: null };
   }
   startDateChanged(e) {
     if (e.singleDate.jsDate > this.selectedEndDate) {
@@ -120,11 +123,26 @@ export class VehicleRegistrationComponent implements OnInit {
   }
 
   camerasFoundHandler(e) {
-    console.log(e);
+    if (e) {
+      this.deviceList = e;
+      this.capturingDeviceFound = true;
+    }
   }
   camerasNotFoundHandler(e) {
     if (e) {
       this.capturingDeviceFound = false;
     }
+  }
+
+  scanSuccessHandler(e) {
+    if (e) {
+      this.registerForm.patchValue({
+        qrCodeNumber: e
+      });
+    }
+  }
+
+  selectedCamera(device) {
+    this.desiredDevice = device;
   }
 }
