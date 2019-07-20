@@ -140,9 +140,18 @@
             <h4 class="font-weight-600 inline-block">QR Code</h4>
             <hr>
             <div class="formLabel form-group">
-                <div class="wihtespace"></div>
-                <button name="" type="button" class="btn btn-primary">Scan</button>
+                <label>Generate QR</label>
+                <button name="" type="button" class="btn btn-primary scan-button" (click)="openModal('qrScanner')" [disabled]="!capturingDeviceFound">Scan</button>
+                <span class="device-not-found"><sup>*</sup>Capturing device not found</span>
             </div>
+
+            <div class="formLabel form-group">
+                    <label>QR Generated</label>
+                    <input readonly formControlName="qrCodeNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
+                    <div *ngIf="submitted && !!f.qrCodeNumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.qrCodeNumber?.errors.required"><sup>*</sup>QR Code required</div>
+                        </div>
+                </div>
         </div>
     </div>
     <div class="vehicleFooter">
@@ -151,5 +160,15 @@
         </div>
     </div>
 </form>
-
+<app-modal id="qrScanner">
+        <div class="modal">
+            <div class="modal-body">
+                <h1>QR Scanner</h1>
+                <zxing-scanner [(device)]="desiredDevice" (camerasFound)="camerasFoundHandler($event)" (camerasNotFound)="camerasNotFoundHandler($event)"></zxing-scanner>
+                <button (click)="closeModal('qrScanner');">Close</button>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+    </app-modal>
 </div>
+

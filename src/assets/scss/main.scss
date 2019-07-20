@@ -73,7 +73,6 @@ label{
     padding-bottom: 40px;
 }
 .vehicleSection button{
-    margin-top:23px;
     background-color: #00acc6 !important;
     border-color: #00acc6 !important;
 
@@ -91,6 +90,7 @@ label{
 .formLabel label{
     color:#868686;
     font-weight: 500;
+    display: block;
 }
 
 .invalid-feedback {
@@ -111,3 +111,49 @@ label{
 lib-angular-mydatepicker-calendar {
     position: absolute !important;
 }
+
+.scan-button {
+    display: inline-block !important;
+}
+
+
+app-modal {
+    visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  }
+  app-modal .modal {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;  
+    overflow: auto;
+  }
+  app-modal .modal .modal-body {
+    padding: 20px;
+    background: #fff;
+    margin: 150px 300px;
+    border-radius: 10px;
+  }
+  app-modal .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;  
+    background-color: #000;
+    opacity: 0.75;  
+    z-index: 900;
+  }
+  body.modal-open {
+    overflow-x: hidden;
+  }
+
+  .device-not-found {
+    color: #E74C3C !important;
+    font-size: 10px !important;
+  }
+  

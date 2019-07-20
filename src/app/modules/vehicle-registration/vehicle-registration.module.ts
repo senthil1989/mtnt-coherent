@@ -12,6 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { VehicleRegistrationComponent } from './vehicle-registration.component';
 import { VehicleRegistrationRoutingModule } from './vehicle-registration.routing';
+import { ModalService } from '../../core/services/model.service';
+import { ModalComponent } from '../../core/directives/model.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   imports: [
@@ -23,14 +26,17 @@ import { VehicleRegistrationRoutingModule } from './vehicle-registration.routing
     LazyLoadImagesModule,
     VehicleRegistrationRoutingModule,
     AngularMyDatePickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ZXingScannerModule
   ],
   declarations: [
     VehicleRegistrationComponent,
+    ModalComponent
   ],
   providers: [
     AuthGuard,
-    Title
+    Title,
+    ModalService
   ]
 })
 export class VehicleRegistrationModule { }

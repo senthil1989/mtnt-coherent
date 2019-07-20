@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ApiService } from '../../core/services/api.service';
-// import { IMyDate } from './vehicle-registration-interface/vehicle-registration.interface';
+import { ModalService } from '../../core/services/model.service';
 
 @Component({
   selector: 'app-vehicle-registration',
@@ -44,8 +44,11 @@ export class VehicleRegistrationComponent implements OnInit {
   public vendorList: any;
   public selectedEndDate: Date;
   public selectedStartDate: Date;
+  public desiredDevice: any = null;
+  public capturingDeviceFound = false;
   constructor(private formBuilder: FormBuilder,
-              private apiService: ApiService) { }
+              private apiService: ApiService,
+              private modalService: ModalService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -58,6 +61,7 @@ export class VehicleRegistrationComponent implements OnInit {
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
       roadWorthyNumber: ['', [Validators.required, Validators.minLength(0)]],
       formCorAnumber: ['', [Validators.required, Validators.minLength(0)]],
+      qrCodeNumber: ['', [Validators.required]],
       driverName: [''],
       driverContact: [''],
       licenseNumber: [''],
@@ -68,6 +72,14 @@ export class VehicleRegistrationComponent implements OnInit {
       this.vendorList = data['vendorList'];
     });
 
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
  get f() { return this.registerForm.controls; }
@@ -105,5 +117,14 @@ export class VehicleRegistrationComponent implements OnInit {
     this.myDatePickerOptions2.disableUntil['year'] = year;
     this.myDatePickerOptions2.disableUntil['month'] = month;
     this.myDatePickerOptions2.disableUntil['day'] = day;
+  }
+
+  camerasFoundHandler(e) {
+    console.log(e);
+  }
+  camerasNotFoundHandler(e) {
+    if (e) {
+      this.capturingDeviceFound = false;
+    }
   }
 }

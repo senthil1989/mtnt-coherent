@@ -34,6 +34,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@videojs/http-streaming": "^1.2.5",
+    "@zxing/ngx-scanner": "^2.0.0",
     "angular-mydatepicker": "^0.1.9",
     "angularx-social-login": "^1.2.6",
     "aws-sdk": "^2.488.0",
