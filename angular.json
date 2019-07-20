@@ -144,7 +144,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "./src/assets/scss/bootstrap.min.css"
+              "./src/assets/scss/bootstrap.css"
             ],
             "scripts": [
             ],

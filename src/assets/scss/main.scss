@@ -1,0 +1,113 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+header{
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #e2e1e1;
+    box-shadow: 1px 1px 10px #CCC;
+}
+header h3{
+    margin: 0;
+}
+.seasonSection {
+    font-size: 18px;
+    padding: 30px 20px;
+
+}
+i.fa{
+    font-size: 16px !important;	
+    padding-right: 15px;
+}
+.seasonSection .seasonDate{
+    font-size: 13px;
+}
+.seasonDate input{
+    width: 120px;
+    display: inline-block;
+    height: 30px;
+    text-align:center;
+    background-color: #b3b3b3;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+.seasonDate span{
+    padding: 0 15px;
+}
+.seasonLabel{
+    padding-bottom: 20px;
+}
+.container{
+    background-color: #f2f2f2;
+    padding: 0;
+}
+.vehicleSection{
+    background-color: #e2e1e1;
+    padding: 30px 20px 10px;
+}
+.vehicleSection hr{
+    border-color: #d8d5d5;
+    margin-top: 0px;
+}
+.vehicleSection h4{
+    font-size: 20px;
+}
+.vehicleSection .col-md-4{
+    padding-right: 80px;
+}
+.inline-block{
+    display: inline-block;
+}
+label{
+    font-weight: normal;
+    font-size: 12px;
+    font-family: "Helvetica Neue",sans-serif;
+}
+.vehicleDetails .formLabel{
+    padding-right: 80px;			
+}
+.formLabel {
+    padding-bottom: 40px;
+}
+.vehicleSection button{
+    margin-top:23px;
+    background-color: #00acc6 !important;
+    border-color: #00acc6 !important;
+
+}
+.vehicleFooter .pull-right{
+        padding: 20px 50px;
+}
+.vehicleFooter button{
+    padding: 5px 30px;
+}
+.formLabel span{
+    color:#018295;
+}
+
+.formLabel label{
+    color:#868686;
+    font-weight: 500;
+}
+
+.invalid-feedback {
+    color: #E74C3C;
+    font-size: 10px;
+    transition: ease-in-out .15s;
+}
+
+.form-control-input {
+    border: none !important; 
+    box-shadow: none !important;
+}
+
+.font-weight-600 {
+    font-weight: 600 !important;
+}
+
+lib-angular-mydatepicker-calendar {
+    position: absolute !important;
+}

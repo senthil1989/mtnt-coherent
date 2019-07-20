@@ -1,83 +1,155 @@
-<div class="container-fluid">
-  <h2 class="text-center">Vehicle Registration</h2></div>
-<div class="well">
-  <h3>Period Duration</h3>
-  <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker><span> to </span>
-  <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
-</div>
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-4">
-          <h1>Vendor Details </h1>
-          <div class="row">
-              <div class="col-md-12"><span>Vendor Name</span>
-                  <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Dropdown <span class="caret"></span></button>
-                      <ul class="dropdown-menu" role="menu">
-                          <li role="presentation"><a href="#">First Item</a></li>
-                          <li role="presentation"><a href="#">Second Item</a></li>
-                          <li role="presentation"><a href="#">Third Item</a></li>
-                      </ul>
+<div class="container">
+    <header>
+        <h3 class="font-weight-600">Vehicle Registration</h3>		
+    </header>
+    <div class="col-md-12">
+        <div class="seasonSection">
+            <div class="seasonLabel">
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                Period Duration
+            </div>
+            <div class="seasonDate">
+                <input angular-mydatepicker name="mydate" [(ngModel)]="startDateModel" 
+    [options]="myDatePickerOptions1" #dp1="angular-mydatepicker" (click)="dp1.toggleCalendar()" (dateChanged)="startDateChanged($event)"/> <span>to</span>
+    <input angular-mydatepicker name="mydate" [(ngModel)]="endDateModel" 
+    [options]="myDatePickerOptions2" #dp2="angular-mydatepicker" (click)="dp2.toggleCalendar()" (dateChanged)="endDateChanged($event)"/>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-12 vehicleSection">
+        <div class="col-md-4">
+            <i class="fa fa-user-o inline-block" aria-hidden="true"></i>
+            <h4 class="font-weight-600 inline-block">Vendor Details</h4>
+            <hr>
+            <div class="formLabel form-group">
+                <label>Vendor Name</label>
+                <select class="form-control form-control-input" formControlName="vendorName" [ngClass]="{ 'is-invalid': submitted && f.vendorName?.errors }">
+                    <option value="">Select Vendor Name</option>
+                    <option *ngFor="let vendor of vendorList" [ngValue]="vendor">{{vendor}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="submitted && !!f.vendorName.errors?.required">
+                    <sup>*</sup>Please select vendor name
                   </div>
-              </div>
-              <div class="col-md-12"><span>Vendor Contact </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-12"><span>Logistics Contact </span>
-                  <input type="text">
-              </div>
-          </div>
-      </div>
-      <div class="col-md-8">
-          <h1>Vehicle Details</h1>
-          <div class="row">
-              <div class="col-md-6"><span>Vehiicle Number </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-6"><span>Insurance Number </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-6"><span>Chassis Number </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-6"><span>Road-Worthy Number </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-6"><span>Type Of Vehicle </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-6"><span>Form C or Form A </span>
-                  <input type="text">
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-md-4">
-          <h1>Driver Details </h1>
-          <div class="row">
-              <div class="col-md-12"><span>Driver Name (Optional)</span>
-                  <input type="text">
-              </div>
-              <div class="col-md-12"><span>Driver Contact (Optional) </span>
-                  <input type="text">
-              </div>
-              <div class="col-md-12"><span>License Number (Optional)</span>
-                  <input type="text">
-              </div>
-          </div>
-      </div>
-      <div class="col-md-8">
-          <div class="row">
-              <div class="col-md-12">
-                  <h1>Driver Details </h1></div>
-              <div class="col-md-12"><span>Generate QR</span>
-                  <button class="btn btn-default" type="button">Button</button>
-              </div>
-              <div class="col-md-12"><span>Generate QR</span>
-                  <input type="text">
-              </div>
-          </div>
-      </div>
-  </div>
+            </div>
+            <div class="formLabel form-group">
+                <label>Vendor Contact</label>
+                <input formControlName="vendorContact" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && f.vendorContact?.errors }">
+                <div *ngIf="submitted && !!f.vendorContact?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.vendorContact?.errors?.required"><sup>*</sup>Vendor Contact is required</div>
+                        <div *ngIf="!!f.vendorContact?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                    </div>
+            </div>
+            <div class="formLabel form-group">
+                <label>Logistics Contact</label>
+                <input formControlName="vendorLogisticsNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.vendorLogisticsNumber?.errors }">
+                <div *ngIf="submitted && !!f.vendorLogisticsNumber?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.vendorLogisticsNumber?.errors.required"><sup>*</sup>Logistics Contact is required</div>
+                        <div *ngIf="!!f.vendorLogisticsNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-8 vehicleDetails">
+            <i class="fa fa-bus inline-block" aria-hidden="true"></i>
+            <h4 class="font-weight-600 inline-block">Vehicle Details</h4>
+            <hr>
+            <div class="col-md-6 " >
+                <div class="formLabel form-group">
+                    <label>Vehicle Number</label>
+                    <input formControlName="vehicleNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.vehicleNumber?.errors }">
+                    <div *ngIf="submitted && !!f.vehicleNumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.vehicleNumber?.errors.required"><sup>*</sup>Vehicle Number is required</div>
+                            <div *ngIf="!!f.vehicleNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>Chassis Number</label>
+                    <input formControlName="chassisNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.chassisNumber?.errors }">
+                    <div *ngIf="submitted && !!f.chassisNumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.chassisNumber?.errors.required"><sup>*</sup>Chassis Number is required</div>
+                            <div *ngIf="!!f.chassisNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>Type of Vehicle</label>
+                    <input formControlName="typeOfVehicle" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.typeOfVehicle?.errors }">
+                    <div *ngIf="submitted && !!f.typeOfVehicle?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.typeOfVehicle?.errors.required"><sup>*</sup>Type of Vehicle is required</div>
+                            <div *ngIf="!!f.typeOfVehicle?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="formLabel form-group">
+                    <label>Insurance Number</label>
+                    <input formControlName="insuranceNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.insuranceNumber?.errors }">
+                    <div *ngIf="submitted && !!f.insuranceNumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.insuranceNumber?.errors.required"><sup>*</sup>Insurance Number is required</div>
+                            <div *ngIf="!!f.insuranceNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>Road-Worthy Number</label>
+                    <input formControlName="roadWorthyNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.roadWorthyNumber?.errors }">
+                    <div *ngIf="submitted && !!f.roadWorthyNumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.roadWorthyNumber?.errors.required"><sup>*</sup>Road-Worthy Number is required</div>
+                            <div *ngIf="!!f.roadWorthyNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>Form C or Form A</label>
+                    <input formControlName="formCorAnumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
+                    <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>Form C or Form A is required</div>
+                            <div *ngIf="!!f.formCorAnumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-user-o inline-block" aria-hidden="true"></i>
+            <h4 class="font-weight-600 inline-block">Driver Details</h4>
+            <hr>
+            <div class="formLabel form-group">
+                <label>Driver Name <span>(Optional)</span></label>
+                <input formControlName="driverName" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.driverName?.errors }">
+                <div *ngIf="submitted && !!f.driverName?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.driverName?.errors.required"><sup>*</sup>Driver Name is required</div>
+                        <div *ngIf="!!f.driverName?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                    </div>
+            </div>
+            <div class="formLabel form-group">
+                <label>Driver Contact <span>(Optional)</span></label>
+                <input formControlName="driverContact" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.driverContact?.errors }">
+                <div *ngIf="submitted && !!f.driverContact?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.driverContact?.errors.required"><sup>*</sup>Driver Contact is required</div>
+                        <div *ngIf="!!f.driverContact?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                    </div>
+            </div>
+            <div class="formLabel form-group">
+                <label>License Number <span>(Optional)</span></label>
+                <input formControlName="licenseNumber" type="text" name="" class="form-control form-control-input" [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
+                <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>License Number is required</div>
+                        <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>Minimum length required</div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-qrcode inline-block" aria-hidden="true"></i>
+            <h4 class="font-weight-600 inline-block">QR Code</h4>
+            <hr>
+            <div class="formLabel form-group">
+                <div class="wihtespace"></div>
+                <button name="" type="button" class="btn btn-primary">Scan</button>
+            </div>
+        </div>
+    </div>
+    <div class="vehicleFooter">
+        <div class="pull-right form-group">
+            <button class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>
+
 </div>
