@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -8,7 +8,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   routeSub;
   constructor(
     private apiService: ApiService,
@@ -22,5 +22,4 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
   }
- 
 }

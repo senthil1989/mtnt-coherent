@@ -31,9 +31,6 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -148,9 +145,6 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
