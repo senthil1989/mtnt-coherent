@@ -204,15 +204,15 @@
                     </zxing-scanner>
                 </div>
                 <div class="device-list">
-                    <div class="formLabel form-group">
+                    <div *ngIf="deviceList?.length > 1" class="formLabel form-group">
                         <label>Capture Device List</label>
                         <select class="form-control form-control-input" (change)="selectedCamera($event)">
                             <option value="">Select a Device</option>
-                            <option *ngFor="let device of deviceList" [ngValue]="device.deviceId">{{device.label}}
+                            <option [selected]="desiredDevice.deviceId === device.deviceId"
+                                *ngFor="let device of deviceList" [value]="device.deviceId">{{device.label}}
                             </option>
                         </select>
                     </div>
-                    <!-- <label (click)="selectedCamera(device)" *ngFor="let device of deviceList">{{device.label}}</label> -->
                 </div>
             </div>
         </div>

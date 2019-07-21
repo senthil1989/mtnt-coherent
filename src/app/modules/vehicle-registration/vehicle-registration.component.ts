@@ -47,7 +47,7 @@ export class VehicleRegistrationComponent implements OnInit {
   public desiredDevice: any = null;
   public capturingDeviceFound = false;
   public scannerEnabled = false;
-  deviceList: any;
+  public deviceList: any;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService) { }
@@ -83,6 +83,12 @@ export class VehicleRegistrationComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.desiredDevice = {
+      deviceId: '',
+      groupId: '',
+      kind: '',
+      label: ''
+    };
   }
 
   get f() { return this.registerForm.controls; }
@@ -125,8 +131,6 @@ export class VehicleRegistrationComponent implements OnInit {
   camerasFoundHandler(e) {
     if (e) {
       this.deviceList = e;
-      console.log(e);
-
       this.capturingDeviceFound = true;
     }
   }
@@ -146,8 +150,6 @@ export class VehicleRegistrationComponent implements OnInit {
   }
 
   selectedCamera(device) {
-    console.dir(device.target);
-
-    // this.desiredDevice = device;
+    this.desiredDevice = this.deviceList.filter(data => data.deviceId === device.target.value)[0];
   }
 }
