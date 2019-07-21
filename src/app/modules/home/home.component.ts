@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../../../environments/environment';
