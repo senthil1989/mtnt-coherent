@@ -5,7 +5,6 @@ import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { UserService } from './user.service';
 import { Subject, Observable } from 'rxjs';
 
 export const apiNotifier = new Subject();
@@ -25,12 +24,11 @@ export class ApiService {
     private router: Router,
     private toasterService: ToastrService,
     private authService: AuthService,
-    private userService: UserService
   ) {
-   }
+  }
 
   headers = () => {
-    this.authorization = this.authService.decryption();
+    // this.authorization = this.authService.decryption();
     this.apiHeaders = new HttpHeaders();
     this.apiHeaders.headers['Accept'] = 'application/json';
     this.apiHeaders.headers['X-REQUEST-TYPE'] = 'web';
@@ -39,9 +37,9 @@ export class ApiService {
     } else {
       this.apiHeaders.headers['X-LANGUAGE-CODE'] = 'en';
     }
-    if (this.authorization.hasOwnProperty('response')) {
-      this.apiHeaders.headers['Authorization'] = 'Bearer ' + this.authorization.response.access_token;
-    }
+    // if (this.authorization.hasOwnProperty('response')) {
+    //   this.apiHeaders.headers['Authorization'] = 'Bearer ' + this.authorization.response.access_token;
+    // }
     return this.apiHeaders;
   }
   callGetAPI(url: string) {
@@ -95,7 +93,6 @@ export class ApiService {
       }
     } else if (data.error.statusCode === 401) {
       this.authService.logout(false);
-      this.userService.displayPopup('sign-in');
     } else if (data.error.statusCode === 403) {
       this.authService.logout(false);
       if (data.error.message && data.error.message !== '') {
@@ -105,10 +102,10 @@ export class ApiService {
       this.router.navigate(['404']);
       return false;
     } else {
-          if (data.error.message && data.error.message !== '') {
-            this.toasterService.error('', data.error.message);
-          }
-        }
+      if (data.error.message && data.error.message !== '') {
+        this.toasterService.error('', data.error.message);
+      }
+    }
     if (url) {
       window.history.back();
     }

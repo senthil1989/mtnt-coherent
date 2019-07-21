@@ -31,13 +31,9 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/owl.carousel/dist/owl.carousel.js"
             ]
           },
           "configurations": {
@@ -148,13 +144,9 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/main.scss",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
-              "src/assets/scss/toastr.css",
-              "src/assets/scss/player.css"
+              "./src/assets/scss/bootstrap.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/owl.carousel/dist/owl.carousel.js"
             ],
             "assets": [
               "src/assets",

@@ -16,7 +16,6 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private toasterService: ToastrService,
-    private userService: UserService,
     private translate: TranslateService) {
 
   }
@@ -53,7 +52,6 @@ export class AuthService {
               user.response.name = data.name;
             }
             const userData = this.encryption(user);
-            this.userService.userData(userData);
           }
           return user;
         }
@@ -63,7 +61,6 @@ export class AuthService {
   logout(showToaster = true) {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.userService.userData('');
     this.router.navigate(['/']);
     let getMessage;
     this.translate.get('LOGOUT.LOGOUT_MESSAGE').subscribe(res => {

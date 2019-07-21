@@ -8,7 +8,7 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   routeSub;
   constructor(
     private apiService: ApiService,
@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    this.router.navigate(['/vehicleRegistration']);
   }
- 
 }
