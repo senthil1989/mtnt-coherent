@@ -195,7 +195,8 @@
     <app-modal id="qrScanner">
         <div class="modal">
             <div class="modal-body">
-                <h1>QR Scanner</h1>
+                <h1 style="display: inline-block;">QR Scanner</h1>
+                <h2 class="model-header-x" (click)="closeModal('qrScanner');">X</h2>
                 <div class="scannerDiv">
                     <zxing-scanner [enable]="scannerEnabled" [(device)]="desiredDevice"
                         (camerasFound)="camerasFoundHandler($event)" (camerasNotFound)="camerasNotFoundHandler($event)"
@@ -203,9 +204,16 @@
                     </zxing-scanner>
                 </div>
                 <div class="device-list">
-                    <a (click)="selectedCamera(device)" *ngFor="let device of deviceList">{{device.label}}</a>
+                    <div class="formLabel form-group">
+                        <label>Capture Device List</label>
+                        <select class="form-control form-control-input" (change)="selectedCamera($event)">
+                            <option value="">Select a Device</option>
+                            <option *ngFor="let device of deviceList" [ngValue]="device.deviceId">{{device.label}}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- <label (click)="selectedCamera(device)" *ngFor="let device of deviceList">{{device.label}}</label> -->
                 </div>
-                <button (click)="closeModal('qrScanner');">Close</button>
             </div>
         </div>
         <div class="modal-background"></div>

@@ -149,7 +149,7 @@ app-modal {
     z-index: 900;
   }
   body.modal-open {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .device-not-found {
@@ -158,12 +158,20 @@ app-modal {
   }
 
   .scannerDiv {
-    width: 400px;
+    width: 700px;
     height: 330px;
+    display: inline-block;
   }
 
   .device-list {
-      width: 500px;
-      height: 200px;
+      display: inline;
+    position: absolute;
+    padding: 40px;
+  }
+
+  .model-header-x {
+    display: inline-block;
+    margin: 0 0 0 80%;
+    cursor: pointer;
   }
   

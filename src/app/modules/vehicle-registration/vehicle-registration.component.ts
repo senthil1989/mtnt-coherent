@@ -125,6 +125,8 @@ export class VehicleRegistrationComponent implements OnInit {
   camerasFoundHandler(e) {
     if (e) {
       this.deviceList = e;
+      console.log(e);
+
       this.capturingDeviceFound = true;
     }
   }
@@ -139,10 +141,13 @@ export class VehicleRegistrationComponent implements OnInit {
       this.registerForm.patchValue({
         qrCodeNumber: e
       });
+      this.closeModal('qrScanner');
     }
   }
 
   selectedCamera(device) {
-    this.desiredDevice = device;
+    console.dir(device.target);
+
+    // this.desiredDevice = device;
   }
 }
