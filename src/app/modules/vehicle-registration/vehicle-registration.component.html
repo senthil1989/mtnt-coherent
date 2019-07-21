@@ -1,6 +1,6 @@
 <div class="container">
     <header>
-        <h3 class="font-weight-600">Vehicle Registration</h3>
+        <h3 class="font-weight-600">{{ 'VehicleRegistration' | translate}}</h3>
     </header>
     <div class="col-md-12">
         <div class="seasonSection">
@@ -170,7 +170,7 @@
                 <div class="formLabel form-group">
                     <label>Generate QR</label>
                     <button name="" type="button" class="btn btn-primary scan-button" (click)="openModal('qrScanner')"
-                        [disabled]="!capturingDeviceFound">Scan</button>
+                    [disabled]="!capturingDeviceFound">Scan</button>
                     <span class="device-not-found" *ngIf="!capturingDeviceFound"><sup>*</sup>Capturing device not
                         found</span>
                 </div>
@@ -211,8 +211,7 @@
                             <option *ngFor="let device of deviceList" [ngValue]="device.deviceId">{{device.label}}
                             </option>
                         </select>
-                    </div>
-                    <!-- <label (click)="selectedCamera(device)" *ngFor="let device of deviceList">{{device.label}}</label> -->
+                    </div> 
                 </div>
             </div>
         </div>
