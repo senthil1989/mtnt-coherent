@@ -23,7 +23,8 @@ export class VehicleRegistrationComponent implements OnInit {
                     top : 0px;
                     left : -121px;
                 }`
-    }
+    },
+    markCurrentDay: false
   };
   public myDatePickerOptions2 = {
     dateRange: false,
@@ -37,7 +38,8 @@ export class VehicleRegistrationComponent implements OnInit {
                     left : -120px;
                 }`
     },
-    disableUntil: {}
+    disableUntil: {},
+    markCurrentDay: false
   };
   public registerForm: FormGroup;
   public submitted = false;
@@ -79,16 +81,11 @@ export class VehicleRegistrationComponent implements OnInit {
   openModal(id: string) {
     this.modalService.open(id);
     this.scannerEnabled = true;
+    this.desiredDevice = this.deviceList[0];
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
-    this.desiredDevice = {
-      deviceId: '',
-      groupId: '',
-      kind: '',
-      label: ''
-    };
   }
 
   get f() { return this.registerForm.controls; }
@@ -98,8 +95,21 @@ export class VehicleRegistrationComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
     console.log(this.registerForm.value);
+    const vehicleDetails = this.registerForm.value;
+    this.apiService.callPostAPI('mtnt/api/vehicle/addNewVehicle', {
+      VehicleNumber : vehicleDetails.vehicleNumber,
+      ChassisNumber : vehicleDetails.chassisNumber,
+      TypeOfVehicle : vehicleDetails.typeOfVehicle,
+      VendorContact : vehicleDetails.vendorContact,
+      VendorLogisticsContact :  vehicleDetails.vendorLogisticsNumber,
+      InsuranceNumber : vehicleDetails.insuranceNumber,
+      RoadWorthyNumber : vehicleDetails.roadWorthyNumber,
+      FormCOrANumber : vehicleDetails.formCorAnumber,
+      VendorId : vehicleDetails.vendorName
+    }).subscribe(data => {
+      console.log(data);
+    });
   }
 
   initDateModesls(date: Date) {

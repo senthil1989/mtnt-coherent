@@ -1,3 +1,54 @@
 {
-    "VehicleRegistration" : "Vehicle Registration"
+    "VehicleRegistration" : "Vehicle Registration",
+    "Minimumlengthrequired" : "Minimum length required",
+    "Submit" : "Submit",
+    "Optional" : "(Optional)",
+    "VEHICLEREGISTRATION" : {
+        "PeriodDuration" : "Period Duration",
+        "VENDOR" : {
+            "VendorDetails" : "Vendor Details",
+            "VendorName" : "Vendor Name",
+            "SelectVendorName" : "Select Vendor Name",
+            "Pleaseselectvendorname" : "Please select vendor name",
+            "VendorContact" : "Vendor Contact",
+            "VendorContactisrequired" : "Vendor Contact is required",
+            "LogisticsContact" : "Logistics Contact",
+            "LogisticsContactisrequired" : "Logistics Contact is required"    
+        },
+        "VEHICLE" : {
+            "VehicleDetails" : "Vehicle Details",
+            "VehicleNumber" : "Vehicle Number",
+            "VehicleNumberisrequired" : "Vehicle Number is required",
+            "ChassisNumber" : "Chassis Number",
+            "ChassisNumberisrequired" : "Chassis Number is required",
+            "TypeofVehicle" : "Type of Vehicle",
+            "TypeofVehicleisrequired" : "Type of Vehicle is required",
+            "InsuranceNumber" : "Insurance Number",
+            "InsuranceNumberisrequired" : "Insurance Number is required",
+            "RoadWorthyNumber" : "Road-Worthy Number",
+            "RoadWorthyNumberisrequired" : "Road-Worthy Number is required",
+            "FormCorFormA" : "Form C or Form A",       
+            "FormCorFormAisrequired" : "Form C or Form A is required"       
+        },
+        "DRIVER" : {
+            "DriverDetails" : "Driver Details",
+            "DriverName" : "Driver Name",
+            "DriverNameisrequired" : "Driver Name is required",
+            "Driver Contact" : "Driver Contact",
+            "DriverContactisrequired" : "Driver Contact is required",
+            "LicenseNumber" : "License Number",
+            "LicenseNumberisrequired" : "License Number is required"
+        },
+        "QRCODE" : {
+            "QRCode" : "QR Code",
+            "GenerateQR" : "Generate QR",
+            "Scan" : "Scan",
+            "Capturingdevicenotfound" : "Capturing device not found",
+            "QRGenerated" : "QR Generated",
+            "QRCoderequired" : "QR Code required",
+            "QRScanner" : "QR Scanner",
+            "CaptureDeviceList" : "Capture Device List",
+            "SelectaDevice" : "Select a Device"                
+        }
+    }
 }
