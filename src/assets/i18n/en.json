@@ -5,6 +5,10 @@
     "Optional" : "(Optional)",
     "VEHICLEREGISTRATION" : {
         "PeriodDuration" : "Period Duration",
+        "SelectSesson" : "Select Sesson",
+        "DateRegistered" : "Date Registered",
+        "Remove" : "Remove",
+        "FileRequired" : "File Required", 
         "VENDOR" : {
             "VendorDetails" : "Vendor Details",
             "VendorName" : "Vendor Name",
@@ -34,7 +38,7 @@
             "DriverDetails" : "Driver Details",
             "DriverName" : "Driver Name",
             "DriverNameisrequired" : "Driver Name is required",
-            "Driver Contact" : "Driver Contact",
+            "DriverContact" : "Driver Contact",
             "DriverContactisrequired" : "Driver Contact is required",
             "LicenseNumber" : "License Number",
             "LicenseNumberisrequired" : "License Number is required"
@@ -44,11 +48,18 @@
             "GenerateQR" : "Generate QR",
             "Scan" : "Scan",
             "Capturingdevicenotfound" : "Capturing device not found",
-            "QRGenerated" : "QR Generated",
+            "QRNumber" : "QR Number",
+            "RescanQR" : "Re-scan QR",
             "QRCoderequired" : "QR Code required",
             "QRScanner" : "QR Scanner",
             "CaptureDeviceList" : "Capture Device List",
-            "SelectaDevice" : "Select a Device"                
+            "SelectaDevice" : "Select a Device",
+            "Send" : "Send"
+        },
+        "STATUS" : {
+            "Status" : "Status",
+            "Unblock" : "UNBLOCK",
+            "Block" : "BLOCK"
         }
     }
 }

@@ -7,13 +7,12 @@
             <div class="seasonLabel">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}
-            </div>
-            <div class="seasonDate">
-                <input angular-mydatepicker name="mydate" [(ngModel)]="startDateModel" [options]="myDatePickerOptions1"
-                    #dp1="angular-mydatepicker" (click)="dp1.toggleCalendar()"
-                    (dateChanged)="startDateChanged($event)" /> <span>to</span>
-                <input angular-mydatepicker name="mydate" [(ngModel)]="endDateModel" [options]="myDatePickerOptions2"
-                    #dp2="angular-mydatepicker" (click)="dp2.toggleCalendar()" (dateChanged)="endDateChanged($event)" />
+                <select class="form-control inline-block" (change)="selectedSessonEvent($event)">
+                    <option value="">{{ 'VEHICLEREGISTRATION.SelectSesson' | translate}}</option>
+                    <option [selected] = "sesson.id == selectedSesson" *ngFor="let sesson of sessonList" [value] = "sesson.id">{{sesson.name}}</option>
+                </select>
+                <span class="inline-block">{{ 'VEHICLEREGISTRATION.DateRegistered' | translate}}</span>
+                <input readonly type="text" name="fromDate" class="form-control inline-block form-control-input" [value]="formatedCurrentDate">
             </div>
         </div>
     </div>
@@ -98,6 +97,11 @@
                         <input formControlName="insuranceNumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.insuranceNumber?.errors }">
+                            <label for="insuranceFile">
+                            <input (change)="fileSelected('insurance', $event)" style="display: none" type="file" name="" id="insuranceFile">
+                            <img [src]="insuranceFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                            <div *ngIf="insuranceFile"><a>{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="insuranceFile = null">Remove</a></div>
+                        <div class="invalid-feedback" *ngIf="!insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.insuranceNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.insuranceNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumberisrequired' | translate}}
                             </div>
@@ -106,10 +110,15 @@
                         </div>
                     </div>
                     <div class="formLabel form-group">
-                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumber' | translate}}</label>
+                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumber' | translate}}</label>
                         <input formControlName="roadWorthyNumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.roadWorthyNumber?.errors }">
+                            <label for="roadWorthyFile">
+                            <input (change)="fileSelected('roadWorthy', $event)" style="display: none" type="file" name="" id="roadWorthyFile">
+                            <img [src]="roadWorthyFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                            <div *ngIf="roadWorthyFile"><a>{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="roadWorthyFile = null">Remove</a></div>
+                        <div class="invalid-feedback" *ngIf="!roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.roadWorthyNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.roadWorthyNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumberisrequired' | translate}}</div>
                             <div *ngIf="!!f.roadWorthyNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
@@ -121,6 +130,11 @@
                         <input formControlName="formCorAnumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
+                            <label for="formCorFormAFile">
+                            <input (change)="fileSelected('formCorA', $event)" style="display: none" type="file" name="" id="formCorFormAFile">
+                            <img [src]="formCorFormAFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                            <div *ngIf="formCorFormAFile"><a>{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="formCorFormAFile = null">Remove</a></div>
+                        <div class="invalid-feedback" *ngIf="!formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
                             </div>
@@ -143,7 +157,7 @@
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.DRIVER.DriverName' | translate}} <span>{{ 'Optional' | translate}}</span></label>
+                    <label>{{ 'VEHICLEREGISTRATION.DRIVER.DriverContact' | translate}} <span>{{ 'Optional' | translate}}</span></label>
                     <input formControlName="driverContact" type="text" name="" class="form-control form-control-input"
                         [ngClass]="{ 'is-invalid': submitted && !!f.driverContact?.errors }">
                     <div *ngIf="submitted && !!f.driverContact?.errors" class="invalid-feedback">
@@ -155,6 +169,10 @@
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumber' | translate}} <span>{{ 'Optional' | translate}}</span></label>
                     <input formControlName="licenseNumber" type="text" name="" class="form-control form-control-input"
                         [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
+                        <label for="licenseFile">
+                                <input (change)="fileSelected('license', $event)" style="display: none" type="file" name="" id="licenseFile">
+                        <img [src]="licenseFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                        <div *ngIf="licenseFile"><a>{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                     <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
                         <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
                         <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
@@ -166,22 +184,43 @@
                 <h4 class="font-weight-600 inline-block">{{ 'VEHICLEREGISTRATION.QRCODE.QRCode' | translate}}</h4>
                 <hr>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.QRCODE.GenerateQR' | translate}}</label>
-                    <button name="" type="button" class="btn btn-primary scan-button" (click)="openModal('qrScanner')"
+                    <button name="" type="button" class="btn btn-primary scan-button" [ngClass]="{disable: !capturingDeviceFound}" (click)="openModal('qrScanner')"
                     [disabled]="!capturingDeviceFound">{{ 'VEHICLEREGISTRATION.QRCODE.Scan' | translate}}</button>
                     <span class="device-not-found" *ngIf="!capturingDeviceFound"><sup>*</sup>{{ 'VEHICLEREGISTRATION.QRCODE.Capturingdevicenotfound' | translate}}</span>
+                    <div *ngIf="submitted && !qrCodeNumber && !getStatusChecked" class="invalid-feedback">
+                            <div *ngIf="!qrCodeNumber && !getStatusChecked"><sup>*</sup>{{ 'VEHICLEREGISTRATION.QRCODE.QRCoderequired' | translate}}</div>
+                    </div>    
                 </div>
-
+                <div *ngIf="scanSuccess">
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.QRCODE.QRGenerated' | translate}}</label>
-                    <input readonly formControlName="qrCodeNumber" type="text" name=""
-                        class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
-                    <div *ngIf="submitted && !!f.qrCodeNumber?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.qrCodeNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.QRCODE.QRCoderequired' | translate}}</div>
-                    </div>
+                    <label>{{ 'VEHICLEREGISTRATION.QRCODE.QRNumber' | translate}}</label>
+                    <input readonly type="text" name=""
+                        class="form-control form-control-input" [value]= "qrCodeNumber"
+                        [ngClass]="{ 'is-invalid': submitted && !qrCodeNumber }">
+                </div>
+                <div class="formLabel rescanLabel">
+					<label><input type='checkbox' name="" (change)="reScanChanged($event)">{{ 'VEHICLEREGISTRATION.QRCODE.RescanQR' | translate}}</label>
+                </div>
+                <div class="formLabel rescanLabel" *ngIf="reScanChecked">
+					<textarea rows="4" cols="50"></textarea>   
+                        <button>{{ 'VEHICLEREGISTRATION.QRCODE.Send' | translate}}</button>                     
                 </div>
             </div>
+            </div>
+            <div class="col-md-4 statusSection">
+				<i class="fa fa-flag-o inline-block" aria-hidden="true"></i>
+				<h4 class=" inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Status' | translate}}</h4>
+				<hr>
+				<div class="formLabel">
+                    <span [ngClass]="{disable: getStatusChecked}" class="inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Unblock' | translate}}</span>
+                    <label class="switch">
+                        <input type="checkbox" [checked] = "!checkStatus" (change)="statusChangeEvent($event)">
+                        <span class="slider round"></span>
+                      </label>
+                      <span [ngClass]="{disable: !getStatusChecked}" class="inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Block' | translate}}</span>
+				</div>
+				
+			</div>
         </div>
         <div class="vehicleFooter">
             <div class="pull-right form-group">

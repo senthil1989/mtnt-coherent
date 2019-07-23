@@ -10,51 +10,36 @@ import { ModalService } from '../../core/services/model.service';
   styleUrls: ['./vehicle-registration.component.scss']
 })
 export class VehicleRegistrationComponent implements OnInit {
-  public startDateModel: any;
-  public endDateModel: any;
-  public myDatePickerOptions1 = {
-    dateRange: false,
-    dateFormat: 'dd-mm-yyyy',
-    stylesData: {
-      selector: 'dp1',
-      styles: `
-                .dp1 {
-                    position: absolute !important;
-                    top : 0px;
-                    left : -121px;
-                }`
-    },
-    markCurrentDay: false
-  };
-  public myDatePickerOptions2 = {
-    dateRange: false,
-    dateFormat: 'dd-mm-yyyy',
-    stylesData: {
-      selector: 'dp1',
-      styles: `
-                .dp1 {
-                    position: absolute !important;
-                    top : 0px;
-                    left : -120px;
-                }`
-    },
-    disableUntil: {},
-    markCurrentDay: false
-  };
   public registerForm: FormGroup;
   public submitted = false;
   public vendorList: any;
-  public selectedEndDate: Date;
-  public selectedStartDate: Date;
   public desiredDevice: any = null;
   public capturingDeviceFound = false;
   public scannerEnabled = false;
   public deviceList: any;
+  public currentDate: Date;
+  public formatedCurrentDate;
+  public sessonList = [];
+  public selectedSesson = 4;
+  public getSelectedSessonId: Number;
+  public scanSuccess: Boolean = false;
+  public reScanChecked: Boolean = false;
+  public licenseFile: File;
+  public insuranceFile: File;
+  public roadWorthyFile: File;
+  public formCorFormAFile: File;
+  public uploadIcon = '../../../assets/images/upload-icon.png';
+  public uplodDoneIcon = '../../../assets/images/uploaded.png';
+  public statusChecked = true;
+  public getStatusChecked: Boolean = this.statusChecked;
+  public qrCodeNumber: string;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService) { }
 
   ngOnInit() {
+    this.currentDate = new Date();
+    this.formatedCurrentDate = `${this.currentDate.getDate()}-${this.currentDate.getMonth() + 1}-${this.currentDate.getFullYear()}`;
     this.registerForm = this.formBuilder.group({
       vendorName: ['', Validators.required],
       vendorContact: ['', [Validators.required, Validators.minLength(0)]],
@@ -65,17 +50,17 @@ export class VehicleRegistrationComponent implements OnInit {
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
       roadWorthyNumber: ['', [Validators.required, Validators.minLength(0)]],
       formCorAnumber: ['', [Validators.required, Validators.minLength(0)]],
-      qrCodeNumber: ['', [Validators.required]],
       driverName: [''],
       driverContact: [''],
       licenseNumber: [''],
 
     });
-    this.initDateModesls(new Date());
     this.apiService.callGetAPI('../../../assets/json/vendorList.json').subscribe(data => {
       this.vendorList = data['vendorList'];
     });
-
+    this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
+      this.sessonList = data['sessonList'];
+    });
   }
 
   openModal(id: string) {
@@ -92,7 +77,7 @@ export class VehicleRegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || (!this.getStatusChecked && (!this.insuranceFile || !this.roadWorthyFile || !this.formCorFormAFile || !this.qrCodeNumber))) {
       return;
     }
     console.log(this.registerForm.value);
@@ -112,31 +97,6 @@ export class VehicleRegistrationComponent implements OnInit {
     });
   }
 
-  initDateModesls(date: Date) {
-    this.selectedStartDate = new Date();
-    this.startDateModel = { isRange: false, singleDate: { jsDate: this.selectedStartDate }, dateRange: null };
-    const d: Date = date;
-    d.setDate(d.getDate() + 2);
-    this.selectedEndDate = d;
-    this.endDateModel = { isRange: false, singleDate: { jsDate: this.selectedEndDate }, dateRange: null };
-  }
-  startDateChanged(e) {
-    if (e.singleDate.jsDate > this.selectedEndDate) {
-      this.initDateModesls(e.singleDate.jsDate);
-    }
-    this.endDateDisable(e.singleDate.date.year, e.singleDate.date.month, e.singleDate.date.day);
-    this.selectedStartDate = e.singleDate.jsDate;
-  }
-
-  endDateChanged(e) {
-    this.selectedEndDate = e.singleDate.jsDate;
-  }
-
-  endDateDisable(year: number, month: number, day: number) {
-    this.myDatePickerOptions2.disableUntil['year'] = year;
-    this.myDatePickerOptions2.disableUntil['month'] = month;
-    this.myDatePickerOptions2.disableUntil['day'] = day;
-  }
 
   camerasFoundHandler(e) {
     if (e) {
@@ -152,14 +112,43 @@ export class VehicleRegistrationComponent implements OnInit {
 
   scanSuccessHandler(e) {
     if (e) {
-      this.registerForm.patchValue({
-        qrCodeNumber: e
-      });
+      this.qrCodeNumber = e;
+      this.scanSuccess = true;
       this.closeModal('qrScanner');
     }
   }
 
   selectedCamera(device) {
     this.desiredDevice = this.deviceList.filter(data => data.deviceId === device.target.value)[0];
+  }
+
+  selectedSessonEvent(e) {
+    console.log(e.srcElement.value);
+    this.getSelectedSessonId = e.srcElement.value;
+  }
+
+  reScanChanged(e) {
+    this.reScanChecked = e.srcElement.checked;
+  }
+
+
+  fileSelected(whichFile: string, file: File) {
+    if (whichFile === 'insurance') {
+      this.insuranceFile = file['path'][0].files[0];
+    } else if (whichFile === 'roadWorthy') {
+      this.roadWorthyFile = file['path'][0].files[0];
+    } else if (whichFile === 'formCorA') {
+      this.formCorFormAFile = file['path'][0].files[0];
+    } else if (whichFile === 'license') {
+      this.licenseFile = file['path'][0].files[0];
+    }
+  }
+
+  statusChangeEvent(e) {
+    this.getStatusChecked = e.srcElement.checked;
+  }
+
+  get checkStatus(): Boolean {
+    return (this.insuranceFile && this.roadWorthyFile && this.formCorFormAFile && this.qrCodeNumber) ? true : false;
   }
 }
