@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'vehicleRegistration',
     loadChildren: './modules/vehicle-registration/vehicle-registration.module#VehicleRegistrationModule'
+  },
+  {
+    path: 'vehicleList',
+    loadChildren: './modules/vehicle-list/vehicle-list.module#VehicleListModule'
   }
 ];
 

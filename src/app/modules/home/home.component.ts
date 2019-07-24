@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.router.navigate(['/vehicleRegistration']);
+    this.router.navigate(['/vehicleList']);
   }
 }

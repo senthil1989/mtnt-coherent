@@ -1,0 +1,185 @@
+{
+    "vehicleList" : [
+        {
+            "id" : "1",
+            "vendorname" : "vendor 1",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "1231312312",
+            "typeOfVehicle" : "Bike",
+            "vendorContact" : "879534623464",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "2",
+            "vendorname" : "vendor 2",
+            "registeredDate" : "1523297154",
+            "vehicleNumber" : "675464635",
+            "typeOfVehicle" : "Car",
+            "vendorContact" : "84453536356",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "3",
+            "vendorname" : "vendor 3",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "8464537475",
+            "typeOfVehicle" : "Flight",
+            "vendorContact" : "78546345665",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "4",
+            "vendorname" : "vendor 4",
+            "registeredDate" : "1523297154",
+            "vehicleNumber" : "7985454854",
+            "typeOfVehicle" : "Truck",
+            "vendorContact" : "095543578463",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "5",
+            "vendorname" : "vendor 5",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "9867546856",
+            "typeOfVehicle" : "Cycle",
+            "vendorContact" : "6767443243",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "6",
+            "vendorname" : "vendor 6",
+            "registeredDate" : "1554829554",
+            "vehicleNumber" : "78967456",
+            "typeOfVehicle" : "Train",
+            "vendorContact" : "235875454",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "7",
+            "vendorname" : "vendor 7",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "96546",
+            "typeOfVehicle" : "Car",
+            "vendorContact" : "355676453",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "8",
+            "vendorname" : "vendor 8",
+            "registeredDate" : "1554829554",
+            "vehicleNumber" : "1231312312",
+            "typeOfVehicle" : "Bike",
+            "vendorContact" : "9756744243",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "9",
+            "vendorname" : "vendor 9",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "67855646",
+            "typeOfVehicle" : "Bike",
+            "vendorContact" : "453453563453",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "10",
+            "vendorname" : "vendor 10",
+            "registeredDate" : "1554228354",
+            "vehicleNumber" : "87756",
+            "typeOfVehicle" : "Truck",
+            "vendorContact" : "56756756",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "11",
+            "vendorname" : "vendor 11",
+            "registeredDate" : "1554829554",
+            "vehicleNumber" : "5345354",
+            "typeOfVehicle" : "Bike",
+            "vendorContact" : "345346354435",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "12",
+            "vendorname" : "vendor 12",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "345234235",
+            "typeOfVehicle" : "Train",
+            "vendorContact" : "54563452524",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "13",
+            "vendorname" : "vendor 13",
+            "registeredDate" : "1523297154",
+            "vehicleNumber" : "32414234243",
+            "typeOfVehicle" : "Flight",
+            "vendorContact" : "45436234234",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "14",
+            "vendorname" : "vendor 14",
+            "registeredDate" : "1554228354",
+            "vehicleNumber" : "6345234234",
+            "typeOfVehicle" : "Lorry",
+            "vendorContact" : "43524243234",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "15",
+            "vendorname" : "vendor 15",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "234235625",
+            "typeOfVehicle" : "Bus",
+            "vendorContact" : "234624234",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "16",
+            "vendorname" : "vendor 16",
+            "registeredDate" : "1554829554",
+            "vehicleNumber" : "6435452342",
+            "typeOfVehicle" : "Car",
+            "vendorContact" : "2341315634243",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "17",
+            "vendorname" : "vendor 17",
+            "registeredDate" : "1523297154",
+            "vehicleNumber" : "346354243762",
+            "typeOfVehicle" : "Train",
+            "vendorContact" : "246235723432",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "18",
+            "vendorname" : "vendor 18",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "6345163472324",
+            "typeOfVehicle" : "Bike",
+            "vendorContact" : "23462531341",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        },{
+            "id" : "19",
+            "vendorname" : "vendor 19",
+            "registeredDate" : "1554829554",
+            "vehicleNumber" : "634534127436745",
+            "typeOfVehicle" : "Truck",
+            "vendorContact" : "23263252354",
+            "vehicleStatus" : "Blocked",
+            "vendorStatus" : "Inactive"
+        },{
+            "id" : "20",
+            "vendorname" : "vendor 20",
+            "registeredDate" : "1563987954",
+            "vehicleNumber" : "34623575",
+            "typeOfVehicle" : "Cycle",
+            "vendorContact" : "2326252356235",
+            "vehicleStatus" : "Unblocked",
+            "vendorStatus" : "Active"
+        }
+    ]
+}
