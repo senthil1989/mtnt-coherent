@@ -1,177 +1,131 @@
-body{
-    font-family: 'Roboto', sans-serif;
-}
-header{
-    text-align: center;
-    padding: 30px 20px;
-    background-color: #e2e1e1;
-    box-shadow: 1px 1px 10px #CCC;
-}
-header h3{
-    margin: 0;
-}
-.seasonSection {
-    font-size: 18px;
-    padding: 30px 20px;
-
-}
-i.fa{
-    font-size: 16px !important;	
-    padding-right: 15px;
-}
-.seasonSection .seasonDate{
-    font-size: 13px;
-}
-.seasonDate input{
-    width: 120px;
-    display: inline-block;
-    height: 30px;
-    text-align:center;
-    background-color: #b3b3b3;
-    color: black;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-weight: 500;
-}
-.seasonDate span{
-    padding: 0 15px;
-}
-.seasonLabel{
-    padding-bottom: 20px;
-}
-.container{
-    background-color: #f2f2f2;
-    padding: 0;
-}
-.vehicleSection{
-    background-color: #e2e1e1;
-    padding: 30px 20px 10px;
-}
-.vehicleSection hr{
-    border-color: #d8d5d5;
-    margin-top: 0px;
-}
-.vehicleSection h4{
-    font-size: 20px;
-}
-.vehicleSection .col-md-4{
-    padding-right: 80px;
-}
-.inline-block{
-    display: inline-block;
-}
-label{
-    font-weight: normal;
-    font-size: 12px;
-    font-family: "Helvetica Neue",sans-serif;
-}
-.vehicleDetails .formLabel{
-    padding-right: 80px;			
-}
-.formLabel {
-    padding-bottom: 40px;
-}
-.vehicleSection button{
-    background-color: #00acc6 !important;
-    border-color: #00acc6 !important;
-
-}
-.vehicleFooter .pull-right{
-        padding: 20px 50px;
-}
-.vehicleFooter button{
-    padding: 5px 30px;
-}
-.formLabel span{
-    color:#018295;
-}
-
-.formLabel label{
-    color:#868686;
-    font-weight: 500;
-    display: block;
-}
-
-.invalid-feedback {
-    color: #E74C3C;
-    font-size: 10px;
-    transition: ease-in-out .15s;
-}
-
-.form-control-input {
-    border: none !important; 
-    box-shadow: none !important;
-}
-
-.font-weight-600 {
-    font-weight: 600 !important;
-}
-
-lib-angular-mydatepicker-calendar {
-    position: absolute !important;
-}
-
-.scan-button {
-    display: inline-block !important;
-}
 
 
-app-modal {
-    visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s linear;
-  }
-  app-modal .modal {
-    display: block !important;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;  
-    overflow: auto;
-  }
-  app-modal .modal .modal-body {
-    padding: 20px;
-    background: #fff;
-    margin: 150px 300px;
-    border-radius: 10px;
-  }
-  app-modal .modal-background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;  
-    background-color: #000;
-    opacity: 0.75;  
-    z-index: 900;
-  }
-  body.modal-open {
-    overflow: hidden;
-  }
+// .seasonSection .seasonDate{
+//     font-size: 13px;
+// }
+// .seasonSection i.fa{
+//     font-size: 30px !important;
+// }
+// .seasonDate input{
+//     width: 120px;
+//     display: inline-block;
+//     height: 30px;
+// }
+// .seasonDate span{
+//     padding: 0 15px;
+// }
 
-  .device-not-found {
-    color: #E74C3C !important;
-    font-size: 10px !important;
-  }
 
-  .scannerDiv {
-    width: 700px;
-    height: 330px;
-    display: inline-block;
-  }
 
-  .device-list {
-      display: inline;
-    position: absolute;
-    padding: 40px;
-  }
 
-  .model-header-x {
-    display: inline-block;
-    margin: 0 0 0 80%;
-    cursor: pointer;
-  }
-  
+
+
+
+
+
+
+// .vehicleList header{
+//     text-align: center;
+//     padding: 32px 20px;
+//     background-color: #0b4b52;
+//        border-bottom: 1px solid #FFF;
+// }
+// .vehicleList header h3{
+//     margin: 0;
+//     font-size: 40px;
+//     color: #FFF;
+// }
+// .vehicleList .seasonSection,.vehicleList .listContainer {
+//     font-size: 18px;
+//     padding: 30px 0px 150px 0;
+//     width: 90%;
+//     margin: 0 auto;
+//     float: none;
+//     position: relative;
+    
+
+// }
+// .vehicleList .listContainer .listTable{
+//     position: absolute;
+//     width: 100%;
+//     top: -120px;
+// }
+// .vehicleList .seasonLabel{
+//     padding-top: 20px;
+//     font-size: 30px;    
+// }
+// .vehicleList .seasonLabel select, .vehicleList .seasonLabel input[type="text"]{
+//     width: auto;
+//     font-size: 22px;
+//     font-family: "Helvetica Neue",sans-serif;
+//     height: auto;
+//     padding: 12px 50px 12px 10px;
+//     position: relative;
+// }
+// .vehicleList .seasonLabel input[type="text"]{
+//     width: 35%;
+// }
+// .vehicleList .seasonLabel button{ 
+//     font-size: 28px;
+//     background-color: #00adc6;
+//     padding: 5px 80px; 
+//     border-radius: 10px;
+// }
+// .vehicleList .seasonLabel input[type="text"]:after{
+//     content: url(../images/search.png);
+//     width: 60px;
+//        height: 30px;
+//     background-image: url(../images/search.png);
+// }
+// .vehicleList i.fa{
+//     font-size: 30px !important;	
+//     padding-right: 15px;
+// }
+// .vehicleList .seasonLabel span { 
+//     margin-left: 5%; 
+//     margin-right:2%;
+//     color: #FFF;
+//     font-size: 20px;  
+// }
+
+// .vehicleList .mainSection{
+//     background-color: #0b4b52;
+// }
+// table thead{
+//     background-color: #FFF;
+//     font-size: 20px;
+// }
+// table thead th, table tbody td{ padding:15px 20px !important }
+// table tbody tr:nth-child(odd) {
+//     background-color: #e6e6e6;
+//     font-family: "Helvetica Neue",sans-serif;
+// }
+// table tbody tr:nth-child(even) {
+//     background-color: #FFF;
+//     font-family: "Helvetica Neue",sans-serif;
+// }
+// table tbody tr td:last-child{
+//     cursor: pointer;
+// }
+// .detailSection {
+//     width: 100%;
+//     z-index: 9999;
+//     position: absolute;
+//     background-color: #FFF;
+//     top: 10px;
+//     display: none;
+// }
+
+// body{
+//     font-family: 'Roboto', sans-serif;
+// }
+// header{
+//     text-align: center;
+//     padding: 32px 20px;
+//     background-color: #e8e8e8;
+//     box-shadow: 1px 1px 10px #CCC;
+// }
+// header h3{
+//     margin: 0;
+//     font-size: 40px;
+// }
