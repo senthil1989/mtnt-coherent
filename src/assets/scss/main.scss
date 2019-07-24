@@ -1,131 +1,18 @@
-
-
-// .seasonSection .seasonDate{
-//     font-size: 13px;
-// }
-// .seasonSection i.fa{
-//     font-size: 30px !important;
-// }
-// .seasonDate input{
-//     width: 120px;
-//     display: inline-block;
-//     height: 30px;
-// }
-// .seasonDate span{
-//     padding: 0 15px;
-// }
-
-
-
-
-
-
-
-
-
-
-// .vehicleList header{
-//     text-align: center;
-//     padding: 32px 20px;
-//     background-color: #0b4b52;
-//        border-bottom: 1px solid #FFF;
-// }
-// .vehicleList header h3{
-//     margin: 0;
-//     font-size: 40px;
-//     color: #FFF;
-// }
-// .vehicleList .seasonSection,.vehicleList .listContainer {
-//     font-size: 18px;
-//     padding: 30px 0px 150px 0;
-//     width: 90%;
-//     margin: 0 auto;
-//     float: none;
-//     position: relative;
-    
-
-// }
-// .vehicleList .listContainer .listTable{
-//     position: absolute;
-//     width: 100%;
-//     top: -120px;
-// }
-// .vehicleList .seasonLabel{
-//     padding-top: 20px;
-//     font-size: 30px;    
-// }
-// .vehicleList .seasonLabel select, .vehicleList .seasonLabel input[type="text"]{
-//     width: auto;
-//     font-size: 22px;
-//     font-family: "Helvetica Neue",sans-serif;
-//     height: auto;
-//     padding: 12px 50px 12px 10px;
-//     position: relative;
-// }
-// .vehicleList .seasonLabel input[type="text"]{
-//     width: 35%;
-// }
-// .vehicleList .seasonLabel button{ 
-//     font-size: 28px;
-//     background-color: #00adc6;
-//     padding: 5px 80px; 
-//     border-radius: 10px;
-// }
-// .vehicleList .seasonLabel input[type="text"]:after{
-//     content: url(../images/search.png);
-//     width: 60px;
-//        height: 30px;
-//     background-image: url(../images/search.png);
-// }
-// .vehicleList i.fa{
-//     font-size: 30px !important;	
-//     padding-right: 15px;
-// }
-// .vehicleList .seasonLabel span { 
-//     margin-left: 5%; 
-//     margin-right:2%;
-//     color: #FFF;
-//     font-size: 20px;  
-// }
-
-// .vehicleList .mainSection{
-//     background-color: #0b4b52;
-// }
-// table thead{
-//     background-color: #FFF;
-//     font-size: 20px;
-// }
-// table thead th, table tbody td{ padding:15px 20px !important }
-// table tbody tr:nth-child(odd) {
-//     background-color: #e6e6e6;
-//     font-family: "Helvetica Neue",sans-serif;
-// }
-// table tbody tr:nth-child(even) {
-//     background-color: #FFF;
-//     font-family: "Helvetica Neue",sans-serif;
-// }
-// table tbody tr td:last-child{
-//     cursor: pointer;
-// }
-// .detailSection {
-//     width: 100%;
-//     z-index: 9999;
-//     position: absolute;
-//     background-color: #FFF;
-//     top: 10px;
-//     display: none;
-// }
-
-// body{
-//     font-family: 'Roboto', sans-serif;
-// }
-// header{
-//     text-align: center;
-//     padding: 32px 20px;
-//     background-color: #e8e8e8;
-//     box-shadow: 1px 1px 10px #CCC;
-// }
-// header h3{
-//     margin: 0;
-//     font-size: 40px;
-// }
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
