@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { ApiService } from '../../core/services/api.service';
 import { ModalService } from '../../core/services/model.service';
@@ -33,9 +34,14 @@ export class VehicleRegistrationComponent implements OnInit {
   public statusChecked = true;
   public getStatusChecked: Boolean = this.statusChecked;
   public qrCodeNumber: string;
+  public insuranceDownloadUrl: SafeHtml;
+  public roadWorthyDownloadUrl: SafeHtml;
+  public formCorFormADownloadUrl: SafeHtml;
+  public licenseDownloadUrl: SafeHtml;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private modalService: ModalService) { }
+    private modalService: ModalService,
+    private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.currentDate = new Date();
@@ -43,10 +49,13 @@ export class VehicleRegistrationComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       vendorName: ['', Validators.required],
       vendorContact: ['', [Validators.required, Validators.minLength(0)]],
-      vendorLogisticsNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
+      VendorAddress: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
+      TransportOfficerName: ['', [Validators.required, Validators.minLength(0)]],
+      TransportOfficerContact: ['', [Validators.required, Validators.minLength(0)]],
       vehicleNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
       chassisNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
       typeOfVehicle: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
+      CapacityOfVehicle: ['', [Validators.required, Validators.minLength(0)]],
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
       roadWorthyNumber: ['', [Validators.required, Validators.minLength(0)]],
       formCorAnumber: ['', [Validators.required, Validators.minLength(0)]],
@@ -135,14 +144,18 @@ export class VehicleRegistrationComponent implements OnInit {
   fileSelected(whichFile: string, file: File) {
     if (whichFile === 'insurance') {
       this.insuranceFile = file['path'][0].files[0];
+      this.insuranceDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.insuranceFile));
     } else if (whichFile === 'roadWorthy') {
       this.roadWorthyFile = file['path'][0].files[0];
+      this.roadWorthyDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.roadWorthyFile));
     } else if (whichFile === 'formCorA') {
       this.formCorFormAFile = file['path'][0].files[0];
+      this.formCorFormADownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.formCorFormAFile));
     } else if (whichFile === 'license') {
       this.licenseFile = file['path'][0].files[0];
+      this.licenseDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.licenseFile));
     }
-  }
+    }
 
   statusChangeEvent(e) {
     this.getStatusChecked = e.srcElement.checked;
@@ -150,5 +163,9 @@ export class VehicleRegistrationComponent implements OnInit {
 
   get checkStatus(): Boolean {
     return (this.insuranceFile && this.roadWorthyFile && this.formCorFormAFile && this.qrCodeNumber) ? true : false;
+  }
+
+  sanitizeUrl(url): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
 }
