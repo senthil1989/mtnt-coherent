@@ -10,6 +10,8 @@ import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { Safe } from '../../shared/safeHtml';
+
 import { VehicleRegistrationComponent } from './vehicle-registration.component';
 import { VehicleRegistrationRoutingModule } from './vehicle-registration.routing';
 import { ModalService } from '../../core/services/model.service';

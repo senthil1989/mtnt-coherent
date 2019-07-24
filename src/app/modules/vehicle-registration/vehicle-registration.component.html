@@ -43,13 +43,35 @@
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.LogisticsContact' | translate}}</label>
-                    <input formControlName="vendorLogisticsNumber" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddress' | translate}}</label>
+                    <input formControlName="VendorAddress" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.vendorLogisticsNumber?.errors }">
-                    <div *ngIf="submitted && !!f.vendorLogisticsNumber?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.vendorLogisticsNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.LogisticsContactisrequired' | translate}}</div>
-                        <div *ngIf="!!f.vendorLogisticsNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.VendorAddress?.errors }">
+                    <div *ngIf="submitted && !!f.VendorAddress?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.VendorAddress?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddressrequired' | translate}}</div>
+                        <div *ngIf="!!f.VendorAddress?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerName' | translate}}</label>
+                    <input formControlName="TransportOfficerName" type="text" name=""
+                        class="form-control form-control-input"
+                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerName?.errors }">
+                    <div *ngIf="submitted && !!f.TransportOfficerName?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.TransportOfficerName?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerNamerequired' | translate}}</div>
+                        <div *ngIf="!!f.TransportOfficerName?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="formLabel form-group">
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContact' | translate}}</label>
+                    <input formControlName="TransportOfficerContact" type="text" name=""
+                        class="form-control form-control-input"
+                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerContact?.errors }">
+                    <div *ngIf="submitted && !!f.TransportOfficerContact?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.TransportOfficerContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContactrequired' | translate}}</div>
+                        <div *ngIf="!!f.TransportOfficerContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
@@ -90,6 +112,17 @@
                             <div *ngIf="!!f.typeOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
+                    <div class="formLabel form-group">
+                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehicle' | translate}}</label>
+                        <input formControlName="CapacityOfVehicle" type="text" name=""
+                            class="form-control form-control-input"
+                            [ngClass]="{ 'is-invalid': submitted && !!f.CapacityOfVehicle?.errors }">
+                        <div *ngIf="submitted && !!f.CapacityOfVehicle?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.CapacityOfVehicle?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehiclerequired' | translate}}
+                            </div>
+                            <div *ngIf="!!f.CapacityOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="formLabel form-group">
@@ -100,7 +133,7 @@
                             <label for="insuranceFile">
                             <input (change)="fileSelected('insurance', $event)" style="display: none" type="file" name="" id="insuranceFile">
                             <img [src]="insuranceFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="insuranceFile"><a>{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="insuranceFile = null">Remove</a></div>
+                            <div *ngIf="insuranceFile"><a [href]="insuranceDownloadUrl" [download]="insuranceFile?.name">{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="insuranceFile = null">Remove</a></div>
                         <div class="invalid-feedback" *ngIf="!insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.insuranceNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.insuranceNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumberisrequired' | translate}}
@@ -117,7 +150,7 @@
                             <label for="roadWorthyFile">
                             <input (change)="fileSelected('roadWorthy', $event)" style="display: none" type="file" name="" id="roadWorthyFile">
                             <img [src]="roadWorthyFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="roadWorthyFile"><a>{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="roadWorthyFile = null">Remove</a></div>
+                            <div *ngIf="roadWorthyFile"><a [href]="roadWorthyDownloadUrl" [download]="roadWorthyFile?.name">{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="roadWorthyFile = null">Remove</a></div>
                         <div class="invalid-feedback" *ngIf="!roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.roadWorthyNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.roadWorthyNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumberisrequired' | translate}}</div>
@@ -133,7 +166,7 @@
                             <label for="formCorFormAFile">
                             <input (change)="fileSelected('formCorA', $event)" style="display: none" type="file" name="" id="formCorFormAFile">
                             <img [src]="formCorFormAFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="formCorFormAFile"><a>{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="formCorFormAFile = null">Remove</a></div>
+                            <div *ngIf="formCorFormAFile"><a [href]="formCorFormADownloadUrl" [download]="formCorFormAFile?.name">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="formCorFormAFile = null">Remove</a></div>
                         <div class="invalid-feedback" *ngIf="!formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
@@ -172,7 +205,7 @@
                         <label for="licenseFile">
                                 <input (change)="fileSelected('license', $event)" style="display: none" type="file" name="" id="licenseFile">
                         <img [src]="licenseFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                        <div *ngIf="licenseFile"><a>{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div *ngIf="licenseFile"><a [href]="licenseDownloadUrl" [download]="licenseFile?.name">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                     <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
                         <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
                         <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
