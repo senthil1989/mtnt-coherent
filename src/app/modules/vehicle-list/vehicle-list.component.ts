@@ -15,13 +15,15 @@ export class VehicleListComponent implements OnInit {
   public getSelectedSessonId: Number;
   public vehicleList: object[];
   public searchedVehicleNumber: Number;
-  public loadData: Boolean = true;
   public tableHeaderFilter: Boolean[] = [false, false, false, false];
   public rowSubMenu: boolean[];
   public searchedVendorName: string;
   public searchedTypeOfVehicle: string;
   public showDetailedView: Boolean = false;
   public vehicleDetailIndex: number;
+  public dummyVehicleList: object[] = [];
+  public vehicleListForHeader: object[];
+  public selectedVendorNames: string[] = [];
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler(event: KeyboardEvent) {
@@ -39,6 +41,7 @@ export class VehicleListComponent implements OnInit {
     });
     this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
       this.vehicleList = data['vehicleList'];
+      this.vehicleListForHeader = data['vehicleList'];
       this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
@@ -49,17 +52,6 @@ export class VehicleListComponent implements OnInit {
 
   selectedSessonEvent(e) {
     this.getSelectedSessonId = e.srcElement.value;
-  }
-
-  onTableScroll() {
-    if (this.loadData) {
-      this.loadData = false;
-    this.apiService.callGetAPI('../../../assets/json/vehicleListMore.json').subscribe(data => {
-      const moreVehicle = data['vehicleList'];
-      this.vehicleList.push(...moreVehicle);
-      this.rowSubMenu = this.vehicleList.map(_ => false);
-    });
-  }
   }
 
   openFilterMenu(index: number) {
@@ -97,6 +89,22 @@ export class VehicleListComponent implements OnInit {
     this.vehicleDetailIndex = i;
     this.showDetailedView = true;
     this.rowSubMenu = this.rowSubMenu.map(_ => false);
+  }
+
+  vendorNameSelectList(e) {
+    if (this.selectedVendorNames.filter(val => val === e.srcElement.name).length === 0) {
+      this.selectedVendorNames.push(e.srcElement.name);
+    } else {
+      this.selectedVendorNames = this.findAndRemoveFromArray(this.selectedVendorNames, e.srcElement.name);
+    }
+  }
+
+  findAndRemoveFromArray(array: string[], findValue: string) {
+    const index = array.indexOf(findValue);
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    return array;
   }
 
 }

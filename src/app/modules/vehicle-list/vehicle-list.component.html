@@ -28,7 +28,7 @@
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[0]">
                 <ul>
                   <input type="text" [(ngModel)]="searchedVendorName">
-                  <li *ngFor="let vehicle of vehicleList | vendorNameFilter:searchedVendorName;let i = index"><input type="checkbox" name="">{{vehicle.vendorname}}</li>
+                  <li *ngFor="let vehicle of vehicleListForHeader | vendorNameFilter:searchedVendorName;let i = index"><input type="checkbox" [name]="vehicle.vendorname" (change)="vendorNameSelectList($event)">{{vehicle.vendorname}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
@@ -37,7 +37,7 @@
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
                     <input type="text" [(ngModel)]="searchedTypeOfVehicle">
-                  <li *ngFor="let vehicle of vehicleList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index"><input type="checkbox" name="">{{vehicle.typeOfVehicle}}</li>
+                  <li *ngFor="let vehicle of vehicleListForHeader | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index"><input type="checkbox" name="">{{vehicle.typeOfVehicle}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
@@ -58,10 +58,8 @@
             <th></th>
           </tr>
         </thead>
-        <tbody infiniteScroll
-        [infiniteScrollDistance]="0.1"
-        (scrolled)="onTableScroll()">
-          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
+        <tbody>
+          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectedVendorNames:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
             <td>{{vehicle.vendorname}}</td>
             <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
             <td>{{vehicle.vehicleNumber}}</td>
