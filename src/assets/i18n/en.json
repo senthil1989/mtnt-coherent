@@ -67,5 +67,34 @@
             "Unblock" : "UNBLOCK",
             "Block" : "BLOCK"
         }
+    },
+    "VEHICLELIST" : {
+        "VehicleList" : {
+            "VehicleList" : "Vehicle List",
+            "Register" : "Register",
+            "PeriodDuration" : "Period Duration",
+            "Vendor" : "Vendor",
+            "RegisteredDate" : "Registered Date",
+            "VehicleNumber" : "Vehicle Number",
+            "TypeofVehicle" : "Type of Vehicle",
+            "VendorContact" : "Vendor Contact",
+            "VehicleStatus" : "Vehicle Status",
+            "Blocked" : "Blocked",
+            "Unblocked" : "Unblocked",
+            "VendorStatus" : "Vendor Status",
+            "Active" : "Active",
+            "Inactive" : "Inactive",
+            "View" : "View",
+            "Edit" : "Edit",
+            "Delete" : "Delete"
+
+        }
+    },
+    "DETAILEDVIEW" : {
+        "DetailedView" : "Detailed View",
+        "VendorStatus" : "Vendor Status",
+        "VehicleType" : "Vehicle Type",
+        "VehicleStatus" : "Vehicle Status",
+        "DocumentsUploaded" : "Documents Uploaded"
     }
 }

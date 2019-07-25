@@ -20,9 +20,11 @@ export class VehicleListComponent implements OnInit {
   public rowSubMenu: boolean[];
   public searchedVendorName: string;
   public searchedTypeOfVehicle: string;
+  public showDetailedView: Boolean = false;
+  public vehicleDetailIndex: number;
+
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler(event: KeyboardEvent) {
-    console.log(event);
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
     this.rowSubMenu = this.rowSubMenu.map(_ => false);
   }
@@ -84,6 +86,17 @@ export class VehicleListComponent implements OnInit {
         }
       }
     });
+  }
+
+  detailedViewCloseEvent() {
+    this.showDetailedView = false;
+    this.vehicleDetailIndex = null;
+  }
+
+  viewOrEditClickEvent(i: number) {
+    this.vehicleDetailIndex = i;
+    this.showDetailedView = true;
+    this.rowSubMenu = this.rowSubMenu.map(_ => false);
   }
 
 }
