@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { VehicleListComponent } from './vehicle-list.component';
+import { DetailedViewComponent } from './detailed-view/detailed-view.component';
 import { VehicleListRoutingModule } from './vehicle-list.routing';
 import { ModalService } from '../../core/services/model.service';
 import { VehicleNumberFilterPipe } from '../../core/pipes/vehicle-number-filter.pipe';
@@ -33,6 +34,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
   declarations: [
     VehicleListComponent,
+    DetailedViewComponent,
     VehicleNumberFilterPipe,
     VendorNameFilterPipe,
     TypeOfVehicleFilterPipe

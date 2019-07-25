@@ -1,0 +1,68 @@
+
+<div class="col-md-12 mainSection">
+  <div class="seasonSection">
+
+
+<div class="detailSection">
+  <div class="col-md-12 topHeader">
+    <h1>{{ 'DETAILEDVIEW.DetailedView' | translate}}</h1>
+    <p><span>{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}} :</span><span class="box">10/08/2019 to 10/07/2020</span> </p>
+    <span class="closeTap" (click)="closeTab()">X</span>
+  </div>
+  <div class="clearfix"></div>
+  <div class="bodyDetails">
+    <div class="rightArrow navigation" *ngIf="!(vehicleDetailIndex + 1 === vehicleList.length)"><i (click)="nextVehicle()" class="fa fa-angle-right" aria-hidden="true"></i></div>
+    <div class="leftArrow navigation" *ngIf="!(vehicleDetailIndex === 0)"><i (click)="prevVehicle()" class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <div class="col-md-5">
+      <h2 class="inline-block">Vendor Details</h2>
+      <hr>
+      <div class="clearfix"></div>
+      <p>{{ 'VEHICLEREGISTRATION.VENDOR.VendorName' | translate}} : <span>{{vehicle.vendorname}}</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VENDOR.VendorContact' | translate}} : <span>{{vehicle.vendorContact}}</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddress' | translate}} : <span>Vendor Address</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerName' | translate}} : <span>Transport Officer Name</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContact' | translate}} : <span>Transport Officer Contact</span></p>
+      <p>{{ 'DETAILEDVIEW.VendorStatus' | translate}} : <span class="vendorStatus">{{vehicle.vendorStatus}}</span></p>
+    </div>
+    <div class="col-md-5">
+      <h2 class="inline-block">Driver Details</h2>
+      <hr>
+      <div class="clearfix"></div>
+      <p>{{ 'VEHICLEREGISTRATION.DRIVER.DriverName' | translate}} : <span>Driver Name</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.DRIVER.DriverContact' | translate}} : <span>Driver Contact</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumber' | translate}} : <span>License Number</span></p>
+    </div>
+    <div class="col-md-2 buttonSection">
+      <button class="btn btn-primary"><i class="fa fa-pencil"></i>{{ 'VEHICLELIST.VehicleList.Edit' | translate}}</button>
+      <button class="btn btn-danger"><i class="fa fa-trash"></i>{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-5">
+      <h2 class="inline-block">{{ 'VEHICLEREGISTRATION.VEHICLE.VehicleDetails' | translate}}</h2>
+      <hr>
+      <div class="clearfix"></div>
+      <p>{{ 'VEHICLEREGISTRATION.VEHICLE.VehicleNumber' | translate}} : <span>{{vehicle.vehicleNumber}}</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VEHICLE.ChassisNumber' | translate}} : <span>Chassis Number</span></p>
+      <p>{{ 'DETAILEDVIEW.VehicleType' | translate}} : <span>{{vehicle.typeOfVehicle}}</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumber' | translate}} : <span>Insurance Number</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumber' | translate}} : <span>Road-worthy Number</span></p>
+      <p>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormA' | translate}} : <span>Form-A or From-C </span></p>
+      <p>{{ 'DETAILEDVIEW.VehicleStatus' | translate}} : <span class="vendorStatus">{{vehicle.vehicleStatus}}</span></p>
+    </div>
+    <div class="col-md-5 documentUpload">
+      <h2 class="inline-block">{{ 'DETAILEDVIEW.DocumentsUploaded' | translate}}</h2>
+      <hr>
+      <div class="clearfix"></div>
+      <p><span><a href="#"> Insurance_document.pdf </a>,</span></p>
+      <p><span><a href="#"> Road-Worthy Document.pdf </a>,</span></p>
+      <p><span><a href="#"> Form C or Form A.pdf </a>,</span></p>
+      <p><span><a href="#"> Driving License.pdf </a></span></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
