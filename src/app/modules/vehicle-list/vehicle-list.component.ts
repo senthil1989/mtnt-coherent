@@ -92,10 +92,14 @@ export class VehicleListComponent implements OnInit {
   }
 
   vendorNameSelectList(e) {
-    if (this.selectedVendorNames.filter(val => val === e.srcElement.name).length === 0) {
-      this.selectedVendorNames.push(e.srcElement.name);
+    if (e.srcElement.checked) {
+      if (this.selectedVendorNames.filter(val => val === e.srcElement.name).length === 0) {
+        this.selectedVendorNames.push(e.srcElement.name);
+      }
     } else {
-      this.selectedVendorNames = this.findAndRemoveFromArray(this.selectedVendorNames, e.srcElement.name);
+      if (!(this.selectedVendorNames.filter(val => val === e.srcElement.name).length === 0)) {
+        this.selectedVendorNames = this.findAndRemoveFromArray(this.selectedVendorNames, e.srcElement.name);
+      }
     }
   }
 
