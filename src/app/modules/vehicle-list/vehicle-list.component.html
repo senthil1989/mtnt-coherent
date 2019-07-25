@@ -2,12 +2,14 @@
     <app-detailed-view *ngIf="showDetailedView" [vehicleList]="vehicleList" [vehicleDetailIndex]="vehicleDetailIndex" (detailedViewCloseEvent)="detailedViewCloseEvent()"></app-detailed-view>
   <header>
     <h3>{{ 'VEHICLELIST.VehicleList.VehicleList' | translate}}</h3>		
+    <div class="logo"><img src="../../../assets/images/olamcocoa.png"></div>
   </header>
 
   <div class="col-md-12 mainSection">
     <div class="seasonSection">
       <div class="seasonLabel">
         <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber">
+        <div class="inline-block searchIcon"><img src="../../../assets/images/search.png"></div>
         <span class="inline-block">{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}</span>
         <select class="form-control inline-block" (change)="selectedSessonEvent($event)">
           <option value="">{{ 'VEHICLEREGISTRATION.SelectSesson' | translate}}</option>
@@ -25,10 +27,10 @@
         <thead>
           <tr>
             <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="filterSubMenu" *ngIf="tableHeaderFilter[0]">
+              <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
                 <ul>
-                  <input type="text" [(ngModel)]="searchedVendorName">
-                  <li *ngFor="let vehicle of vehicleList | vendorNameFilter:searchedVendorName;let i = index"><input type="checkbox" name="">{{vehicle.vendorname}}</li>
+                  <input type="text" [(ngModel)]="searchedVendorName"><i class="fa fa-times"></i>
+                  <li *ngFor="let vehicle of vehicleList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.vendorname}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
@@ -36,23 +38,24 @@
             <th scope="col" >{{ 'VEHICLELIST.VehicleList.TypeofVehicle' | translate}}<i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
-                    <input type="text" [(ngModel)]="searchedTypeOfVehicle">
-                  <li *ngFor="let vehicle of vehicleList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index"><input type="checkbox" name="">{{vehicle.typeOfVehicle}}</li>
+                    <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i class="fa fa-times"></i>
+                  <li *ngFor="let vehicle of vehicleList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
+                    <label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.typeOfVehicle}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[2]">
                 <ul>
-                  <li><input type="checkbox" name="">{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
-                  <li><input type="checkbox" name="">{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[3]">
                 <ul>
-                  <li><input type="checkbox" name="">{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
-                  <li><input type="checkbox" name="">{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
                 </ul>
               </div></th>
             <th></th>
@@ -69,12 +72,12 @@
             <td>{{vehicle.vendorContact}}</td>
             <td>{{vehicle.vehicleStatus}}</td>
             <td>{{vehicle.vendorStatus}}</td>
-            <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" >
-              <div class="filterSubMenu" *ngIf="rowSubMenu[i]">
+            <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
+              <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
               <ul>
-                <li (click)="viewOrEditClickEvent(i)">{{ 'VEHICLELIST.VehicleList.View' | translate}}</li>
-                <li (click)="viewOrEditClickEvent(i)">{{ 'VEHICLELIST.VehicleList.Edit' | translate}}</li>
-                <li>{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</li>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/eye.png" width="36">{{ 'VEHICLELIST.VehicleList.View' | translate}}</li>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/pencil-edit-button.png" width="26">{{ 'VEHICLELIST.VehicleList.Edit' | translate}}</li>
+                <li><img src="../../../assets/images/rubbish-bin.png" width="25">{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</li>
               </ul>
             </div></td>
           </tr>
