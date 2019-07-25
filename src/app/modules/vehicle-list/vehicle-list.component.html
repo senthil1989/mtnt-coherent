@@ -29,8 +29,8 @@
             <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
                 <ul>
-                  <input type="text" [(ngModel)]="searchedVendorName"><i class="fa fa-times"></i>
-                  <li *ngFor="let vehicle of vehicleList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.vendorname}}</li>
+                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 1" (click)="selectedVendorNames = []" class="fa fa-times"></i>
+                  <li *ngFor="let vehicle of vehicleListForHeader | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="vehicle.vendorname === selectedVendorNames[i]" type="checkbox" [name]="vehicle.vendorname" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vehicle.vendorname}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
@@ -39,8 +39,10 @@
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
                     <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i class="fa fa-times"></i>
-                  <li *ngFor="let vehicle of vehicleList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
-                    <label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.typeOfVehicle}}</li>
+                  <li *ngFor="let vehicle of vehicleListForHeader | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
+                      <label class="filter"><input type="checkbox" name=""><span class="checkmark"></span></label>{{vehicle.typeOfVehicle}}</li>
+                
+                
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
@@ -61,10 +63,8 @@
             <th></th>
           </tr>
         </thead>
-        <tbody infiniteScroll
-        [infiniteScrollDistance]="0.1"
-        (scrolled)="onTableScroll()">
-          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
+        <tbody>
+          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectedVendorNames:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
             <td>{{vehicle.vendorname}}</td>
             <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
             <td>{{vehicle.vehicleNumber}}</td>
