@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../core/services/api.service';
 import { ModalService } from '../../core/services/model.service';
@@ -41,7 +42,8 @@ export class VehicleRegistrationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService,
-    private domSanitizer: DomSanitizer) { }
+    private domSanitizer: DomSanitizer,
+    private router: Router) { }
 
   ngOnInit() {
     this.currentDate = new Date();
@@ -167,5 +169,9 @@ export class VehicleRegistrationComponent implements OnInit {
 
   sanitizeUrl(url): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  navigateTo(navigateurl: string) {
+    this.router.navigate([navigateurl]);
   }
 }
