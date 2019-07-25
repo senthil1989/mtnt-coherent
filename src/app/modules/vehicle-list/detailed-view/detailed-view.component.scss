@@ -75,7 +75,9 @@
 .seasonDate span{
     padding: 0 15px;
 }
-
+.col-md-2.buttonSection button i {
+    margin-right: 10px;
+}
 
 
 
@@ -174,11 +176,12 @@ span.disable{
     background-color: #0b4b52;
 }
 .detailSection {
-    width: 100%;
+    width: 90%;
     z-index: 9999;
     position: absolute;
     background-color: #FFF;
-    top: 10px;
+    top: 160px;
+    left: 80px;
     margin-bottom: 20px;
 }
 .detailSection h1{
@@ -238,6 +241,7 @@ span.disable{
     position: absolute;
     top: 15px;
     right: 20px;
+    cursor: pointer;
     font-size: 23px;
 }
 .bodyDetails .navigation{
