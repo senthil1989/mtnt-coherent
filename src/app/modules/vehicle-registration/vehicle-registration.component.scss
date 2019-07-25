@@ -1,18 +1,25 @@
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Helvetica';
 }
 header{
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     background-color: #e2e1e1;
     box-shadow: 1px 1px 10px #CCC;
 }
+header .logo{
+    width: auto;
+    position: absolute;
+    top: 0px;
+    padding: 20px 10px;
+}
 header h3{
     margin: 0;
+    font-size: 40px;
 }
 .seasonSection {
     font-size: 18px;
-    padding: 30px 20px;
+    padding: 40px 20px 30px 45px;
 
 }
 i.fa{
@@ -37,9 +44,6 @@ i.fa{
 .seasonDate span{
     padding: 0 15px;
 }
-.seasonLabel{
-    padding-bottom: 20px;
-}
 .container{
     background-color: #f2f2f2;
     padding: 0;
@@ -55,9 +59,7 @@ i.fa{
 .vehicleSection h4{
     font-size: 20px;
 }
-.vehicleSection .col-md-4{
-    padding-right: 80px;
-}
+
 .inline-block{
     display: inline-block;
 }
@@ -65,9 +67,6 @@ label{
     font-weight: normal;
     font-size: 12px;
     font-family: "Helvetica Neue",sans-serif;
-}
-.vehicleDetails .formLabel{
-    padding-right: 80px;			
 }
 .formLabel {
     padding-bottom: 40px;
@@ -115,8 +114,6 @@ lib-angular-mydatepicker-calendar {
 .scan-button {
     display: inline-block !important;
 }
-
-
 app-modal {
     visibility: hidden;
   opacity: 0;
@@ -183,21 +180,25 @@ app-modal {
     
     padding: 0;
 }
+.titleIcon{
+    float: left;
+    margin-right: 20px;
+}
+.titleContent{
+    float: left;
+    margin: 0px;
+}
 .vehicleSection{
     background-color: #e2e1e1;
     padding: 40px 60px 10px;
 }
 .vehicleSection hr{
     border-color: #d8d5d5;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 .vehicleSection h4{
     font-size: 30px;
 }
-.vehicleSection .col-md-4{
-    padding-right: 80px;
-}
-
 .inline-block{
     display: inline-block;
 }
@@ -211,27 +212,36 @@ app-modal {
 }
 .formLabel select{
     height: auto;
-    font-size: 25px;
-    width: 75%		    
+    font-size: 25px;	    
 }
 .formLabel input[type="text"] {
     height: auto;
     font-size: 25px;
-    width: auto;
 }
 .formLabel img{
     margin-left: 20px;
     opacity: 0.6;			
 }
+a.uploadRemove{
+    color: #E74C3C;
+}
 .formLabel {
     padding-bottom: 40px;
+    width: 75%;
+    float: left;
+}
+.fileUploadIcon.formLabel {
+    width: 25%;
+    padding-bottom: 0;
+}
+.fileUploadIcon.formLabel label {
+    padding-top: 3px;
 }
 .vehicleSection button{
     font-size: 20px;
     padding: 6px 30px;
     background-color: #00acc6 !important;
     border-color: #00acc6 !important;
-
 }
 .vehicleFooter .pull-right{
         padding: 20px 50px;
@@ -245,7 +255,7 @@ app-modal {
     color:#018295;
 }
 .container{
-    width: 89% !important;
+    width: 90% !important;
 }
 button.disable {
     background-color: #CCC !important;
@@ -274,11 +284,6 @@ span.disable{
     color: #CCC !important;
 }
 
-.seasonSection {
-    font-size: 18px;
-    padding: 30px 20px;
-
-}
 i.fa{
     font-size: 30px !important;	
     padding-right: 15px;
@@ -287,6 +292,8 @@ i.fa{
 .seasonLabel{
     padding-top: 60px;
     font-size: 30px;
+    padding-bottom: 20px;
+    font-weight: bold;
 }
 .seasonLabel select, .seasonLabel input[type="text"]{
     text-align: center;
@@ -358,4 +365,16 @@ i.fa{
   
   .slider.round:before {
     border-radius: 50%;
+  }
+  .statusSection .formLabel .switch{
+    display: inline-block;
+    margin: 0 20px;
+  }
+  .statusSection .formLabel{
+    font-size: 20px;
+    line-height: 40px;
+  }
+  .formLabel img.attachIcon{
+      margin-left: 0px;
+      margin-right: 10px;
   }
