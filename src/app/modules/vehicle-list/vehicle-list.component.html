@@ -1,6 +1,7 @@
 <div class="container vehicleList">
+    <app-detailed-view *ngIf="showDetailedView" [vehicleList]="vehicleList" [vehicleDetailIndex]="vehicleDetailIndex" (detailedViewCloseEvent)="detailedViewCloseEvent()"></app-detailed-view>
   <header>
-    <h3>Vehicle List</h3>		
+    <h3>{{ 'VEHICLELIST.VehicleList.VehicleList' | translate}}</h3>		
     <div class="logo"><img src="../../../assets/images/olamcocoa.png"></div>
   </header>
 
@@ -14,13 +15,7 @@
           <option value="">{{ 'VEHICLEREGISTRATION.SelectSesson' | translate}}</option>
           <option [selected] = "sesson.id == selectedSesson" *ngFor="let sesson of sessonList" [value] = "sesson.id">{{sesson.name}}</option>
         </select>
-        <button class="btn btn-primary pull-right" (click)="navigateTo('/vehicleRegistration')">Register</button>
-      </div>
-      <div class="detailSection">
-        <div class="col-md-12"> 
-          <h3>Detailed View</h3>
-          <span>Period Duration</span><span class="box">10/08/2019 to 10/07/2020</span> 
-        </div>
+        <button class="btn btn-primary pull-right" (click)="navigateTo('/vehicleRegistration')">{{ 'VEHICLELIST.VehicleList.Register' | translate}}</button>
       </div>
     </div>
 
@@ -31,16 +26,16 @@
       <table class="table" >
         <thead>
           <tr>
-            <th scope="col" >Vendor<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
                 <ul>
                   <input type="text" [(ngModel)]="searchedVendorName"><i class="fa fa-times"></i>
                   <li *ngFor="let vehicle of vehicleList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.vendorname}}</li>
                 </ul>
               </div></th>
-            <th scope="col">Registered Date</th>
-            <th scope="col">Vehicle Number</th>
-            <th scope="col" >Type of Vehicle<i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleNumber' | translate}}</th>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.TypeofVehicle' | translate}}<i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
                     <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i class="fa fa-times"></i>
@@ -48,19 +43,19 @@
                     <label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{vehicle.typeOfVehicle}}</li>
                 </ul>
               </div></th>
-            <th scope="col">Vendor Contact</th>
-            <th scope="col">Vehicle Status<i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[2]">
                 <ul>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>Blocked</li>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>Unblocked</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
                 </ul>
               </div></th>
-            <th scope="col">Vendor Status<i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[3]">
                 <ul>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>Active</li>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>Inactive</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
                 </ul>
               </div></th>
             <th></th>
@@ -80,9 +75,9 @@
             <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
               <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
               <ul>
-                <li><img src="../../../assets/images/eye.png" width="36">View</li>
-                <li><img src="../../../assets/images/pencil-edit-button.png" width="26">Edit</li>
-                <li><img src="../../../assets/images/rubbish-bin.png" width="25">Delete</li>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/eye.png" width="36">{{ 'VEHICLELIST.VehicleList.View' | translate}}</li>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/pencil-edit-button.png" width="26">{{ 'VEHICLELIST.VehicleList.Edit' | translate}}</li>
+                <li><img src="../../../assets/images/rubbish-bin.png" width="25">{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</li>
               </ul>
             </div></td>
           </tr>
@@ -90,5 +85,5 @@
       </table>
     </div>
   </div>
-  
 </div>
+
