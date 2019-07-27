@@ -13,7 +13,7 @@ export class VehicleListComponent implements OnInit {
   public sessonList: [];
   public selectedSesson = 2;
   public getSelectedSessonId: Number;
-  public vehicleList: any;
+  public vehicleList: object[];
   public searchedVehicleNumber: Number;
   public tableHeaderFilter: Boolean[] = [false, false, false, false];
   public rowSubMenu: boolean[];

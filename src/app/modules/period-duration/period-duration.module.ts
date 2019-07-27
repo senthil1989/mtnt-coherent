@@ -12,11 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { PeriodDurationComponent } from './period-duration.component';
 import { PeriodDurationRoutingModule } from './period-duration.routing';
-import { ModalService } from '../../core/services/model.service';
-import { VehicleNumberFilterPipe } from '../../core/pipes/vehicle-number-filter.pipe';
-import { VendorNameFilterPipe } from '../../core/pipes/vendor-name-filter.pipe';
-import { TypeOfVehicleFilterPipe } from '../../core/pipes/type-of-vehicle-filter.pipe';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -29,21 +24,15 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     LazyLoadImagesModule,
     PeriodDurationRoutingModule,
     ReactiveFormsModule,
-    InfiniteScrollModule
   ],
   declarations: [
     PeriodDurationComponent,
-    VehicleNumberFilterPipe,
-    VendorNameFilterPipe,
-    TypeOfVehicleFilterPipe
     ],
   providers: [
     AuthGuard,
     Title,
-    ModalService
   ],
   exports: [
-    VehicleNumberFilterPipe
   ]
 })
 export class PeriodDurationModule { }
