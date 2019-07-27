@@ -13,7 +13,7 @@ export class VehicleListComponent implements OnInit {
   public sessonList: [];
   public selectedSesson = 2;
   public getSelectedSessonId: Number;
-  public vehicleList: object[];
+  public vehicleList: any;
   public searchedVehicleNumber: Number;
   public tableHeaderFilter: Boolean[] = [false, false, false, false];
   public rowSubMenu: boolean[];
@@ -23,8 +23,9 @@ export class VehicleListComponent implements OnInit {
   public vehicleDetailIndex: number;
   public dummyVehicleList: object[] = [];
   public selectedVendorNames: string[] = [];
-  public checkedVendornames: boolean[];
-
+  public selectTypeOfVehicle: string[] = [];
+  public vehicleStatusSelect: string;
+  public vendorStatusSelect: string;
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler(event: KeyboardEvent) {
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
@@ -41,8 +42,7 @@ export class VehicleListComponent implements OnInit {
     });
     this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
       this.vehicleList = data['vehicleList'];
-      this.checkedVendornames = this.uniqueVendorNameList.map(_ => false);
-      this.rowSubMenu = this.vehicleList.map(_ => false);
+            this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
 
@@ -101,13 +101,18 @@ export class VehicleListComponent implements OnInit {
         this.selectedVendorNames = this.findAndRemoveFromArray(this.selectedVendorNames, e.srcElement.name);
       }
     }
-    this.uniqueVendorNameList.forEach((val, index) => {
-      if (this.selectedVendorNames.indexOf(val) === 0) {
-        this.checkedVendornames[index] = true;
-      } else {
-        this.checkedVendornames[index] = false;
+  }
+
+  typeOfVehicleSelectList(e) {
+    if (e.srcElement.checked) {
+      if (this.selectTypeOfVehicle.filter(val => val === e.srcElement.name).length === 0) {
+        this.selectTypeOfVehicle.push(e.srcElement.name);
       }
-    });
+    } else {
+      if (!(this.selectTypeOfVehicle.filter(val => val === e.srcElement.name).length === 0)) {
+        this.selectTypeOfVehicle = this.findAndRemoveFromArray(this.selectTypeOfVehicle, e.srcElement.name);
+      }
+    }
   }
 
   findAndRemoveFromArray(array: string[], findValue: string) {
@@ -116,10 +121,6 @@ export class VehicleListComponent implements OnInit {
       array.splice(index, 1);
     }
     return array;
-  }
-
-  vendorSelectedList(i) {
-
   }
 
   get uniqueVendorNameList() {
@@ -142,11 +143,37 @@ export class VehicleListComponent implements OnInit {
     return uniqueVehicleType;
   }
 
+
   clearSelectedVendorNames() {
     this.selectedVendorNames = [];
     this.searchedVendorName = null;
-    this.checkedVendornames = this.uniqueVendorNameList.map(_ => false);
+  }
+
+  clearSelectedtypeOfVehicle() {
+    this.selectTypeOfVehicle = [];
+    this.searchedTypeOfVehicle = null;
+  }
+
+
+  vehicleNumberOnChange() {
+    this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
+    this.selectedVendorNames = this.selectTypeOfVehicle = [];
+  }
+
+  clearAllFliter() {
+    this.selectedVendorNames = [];
+    this.selectTypeOfVehicle = [];
+    this.searchedVehicleNumber = null;
+    this.vehicleStatusSelect = undefined;
+    this.vendorStatusSelect = undefined;
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
   }
 
+  vehicleStatusSelectEvent(e) {
+    this.vehicleStatusSelect = e.srcElement.checked ? e.srcElement.name : undefined;
+  }
+
+  vendorStatusSelectEvent(e) {
+    this.vendorStatusSelect = e.srcElement.checked ? e.srcElement.name : undefined;
+  }
 }

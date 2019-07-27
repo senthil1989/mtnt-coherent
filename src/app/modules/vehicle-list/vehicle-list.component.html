@@ -8,7 +8,7 @@
   <div class="col-md-12 mainSection">
     <div class="seasonSection">
       <div class="seasonLabel">
-        <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber">
+        <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
         <div class="inline-block searchIcon"><img src="../../../assets/images/search.png"></div>
         <span class="inline-block">{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}</span>
         <select class="form-control inline-block" (change)="selectedSessonEvent($event)">
@@ -26,45 +26,45 @@
       <table class="table" >
         <thead>
           <tr>
-            <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<span *ngIf="selectedVendorNames.length > 0">*</span><i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
                 <ul>
-                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 1" (click)="clearSelectedVendorNames()" class="fa fa-times"></i>
-                  <li *ngFor="let vendorName of uniqueVendorNameList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="checkedVendornames[i]" type="checkbox" [name]="vendorName" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vendorName}}</li>
+                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 0" (click)="clearSelectedVendorNames()" class="fa fa-times"></i>
+                  <li *ngFor="let vendorName of uniqueVendorNameList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="!(selectedVendorNames.indexOf(vendorName) === -1)" type="checkbox" [name]="vendorName" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vendorName}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleNumber' | translate}}</th>
-            <th scope="col" >{{ 'VEHICLELIST.VehicleList.TypeofVehicle' | translate}}<i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.TypeofVehicle' | translate}}<span *ngIf="selectTypeOfVehicle.length > 0">*</span><i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
-                    <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i class="fa fa-times"></i>
+                    <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i *ngIf="selectTypeOfVehicle.length > 0" (click)="clearSelectedtypeOfVehicle()" class="fa fa-times"></i>
                   <li *ngFor="let typeOfVehicle of uniqueVehicleTypeList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
-                      <label class="filter"><input type="checkbox" [name]="typeOfVehicle"><span class="checkmark"></span></label>{{typeOfVehicle}}</li>
+                      <label class="filter"><input [checked]="!(selectTypeOfVehicle.indexOf(typeOfVehicle) === -1)" type="checkbox" [name]="typeOfVehicle" (change)="typeOfVehicleSelectList($event)"><span class="checkmark"></span></label>{{typeOfVehicle}}</li>
                 
                 
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
-            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<span *ngIf="vehicleStatusSelect">*</span><i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[2]">
                 <ul>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Blocked" [checked]="vehicleStatusSelect === 'Blocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Unblocked" [checked]="vehicleStatusSelect === 'Unblocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
                 </ul>
               </div></th>
-            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<span *ngIf="vendorStatusSelect">*</span><i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[3]">
                 <ul>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
-                  <li><label class="filter"><input type="checkbox"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Active" [checked]="vendorStatusSelect === 'Active'" (change)="vendorStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Inactive" [checked]="vendorStatusSelect === 'Inactive'" (change)="vendorStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
                 </ul>
               </div></th>
-            <th></th>
+            <th (click)="clearAllFliter()"><span class="fullClearFilter" *ngIf="selectedVendorNames.length > 0 || selectTypeOfVehicle.length > 0 || vehicleStatusSelect || vendorStatusSelect || searchedVehicleNumber">X</span></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectedVendorNames:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
+          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
             <td>{{vehicle.vendorname}}</td>
             <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
             <td>{{vehicle.vehicleNumber}}</td>
@@ -80,6 +80,9 @@
                 <li><img src="../../../assets/images/rubbish-bin.png" width="25">{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</li>
               </ul>
             </div></td>
+          </tr>
+          <tr *ngIf="vehicleList?.length === 0">
+            <td>No records to show</td>
           </tr>
         </tbody>
       </table>

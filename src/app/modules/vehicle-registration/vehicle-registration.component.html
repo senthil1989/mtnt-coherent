@@ -134,8 +134,8 @@
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.insuranceNumber?.errors }">
                             
-                            <div *ngIf="insuranceFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="insuranceDownloadUrl" [download]="insuranceFile?.name">{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="insuranceFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            <div *ngIf="insuranceFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="insuranceDownloadUrl" target="_blank">{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="insuranceFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.insuranceNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.insuranceNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumberisrequired' | translate}}
                             </div>
@@ -155,8 +155,8 @@
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.roadWorthyNumber?.errors }">
                             
-                            <div *ngIf="roadWorthyFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="roadWorthyDownloadUrl" [download]="roadWorthyFile?.name">{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="roadWorthyFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            <div *ngIf="roadWorthyFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="roadWorthyDownloadUrl" target="_blank">{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="roadWorthyFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.roadWorthyNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.roadWorthyNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumberisrequired' | translate}}</div>
                             <div *ngIf="!!f.roadWorthyNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
@@ -174,8 +174,8 @@
                         <input formControlName="formCorAnumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
-                            <div *ngIf="formCorFormAFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="formCorFormADownloadUrl" [download]="formCorFormAFile?.name">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="formCorFormAFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            <div *ngIf="formCorFormAFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="formCorFormADownloadUrl" target="_blank">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="formCorFormAFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
                             </div>
@@ -218,7 +218,7 @@
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumber' | translate}} <span>{{ 'Optional' | translate}}</span></label>
                     <input formControlName="licenseNumber" type="text" name="" class="form-control form-control-input"
                         [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
-                        <div *ngIf="licenseFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="licenseDownloadUrl" [download]="licenseFile?.name">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div *ngIf="licenseFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="licenseDownloadUrl" target="_blank">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                     <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
                         <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
                         <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
