@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'vehicleList',
     loadChildren: './modules/vehicle-list/vehicle-list.module#VehicleListModule'
+  },
+  {
+    path: 'periodDuration',
+    loadChildren: './modules/period-duration/period-duration.module#PeriodDurationModule'
   }
 ];
 
