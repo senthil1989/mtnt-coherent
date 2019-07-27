@@ -30,8 +30,10 @@ header .logo{
     width: 100%;
     top: -120px;
     max-height: 600px;
+    min-height: 600px;
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: #efefef;
 }
 .vehicleList .seasonLabel{
     padding-top: 20px;
@@ -332,4 +334,10 @@ table tbody tr td:last-child{
   }
   td.rowSubMenu img.subMenuItem{
       padding: 10px;
+  }
+
+  .fullClearFilter {
+      color: #ff9696;
+      cursor: pointer !important;
+      font-size: 24px;
   }
