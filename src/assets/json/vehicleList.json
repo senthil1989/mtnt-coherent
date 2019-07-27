@@ -38,7 +38,7 @@
             "vendorStatus" : "Inactive"
         },{
             "id" : "5",
-            "vendorname" : "vendor 5",
+            "vendorname" : "vendor 7",
             "registeredDate" : "1563987954",
             "vehicleNumber" : "9867546856",
             "typeOfVehicle" : "Cycle",
@@ -56,7 +56,7 @@
             "vendorStatus" : "Inactive"
         },{
             "id" : "7",
-            "vendorname" : "vendor 7",
+            "vendorname" : "vendor 1",
             "registeredDate" : "1563987954",
             "vehicleNumber" : "96546",
             "typeOfVehicle" : "Car",
@@ -83,7 +83,7 @@
             "vendorStatus" : "Inactive"
         },{
             "id" : "10",
-            "vendorname" : "vendor 10",
+            "vendorname" : "vendor 6",
             "registeredDate" : "1554228354",
             "vehicleNumber" : "87756",
             "typeOfVehicle" : "Truck",
@@ -101,7 +101,7 @@
             "vendorStatus" : "Inactive"
         },{
             "id" : "12",
-            "vendorname" : "vendor 12",
+            "vendorname" : "vendor 3",
             "registeredDate" : "1563987954",
             "vehicleNumber" : "345234235",
             "typeOfVehicle" : "Train",
@@ -128,7 +128,7 @@
             "vendorStatus" : "Active"
         },{
             "id" : "15",
-            "vendorname" : "vendor 15",
+            "vendorname" : "vendor 1",
             "registeredDate" : "1563987954",
             "vehicleNumber" : "234235625",
             "typeOfVehicle" : "Bus",
@@ -155,7 +155,7 @@
             "vendorStatus" : "Inactive"
         },{
             "id" : "18",
-            "vendorname" : "vendor 18",
+            "vendorname" : "vendor 6",
             "registeredDate" : "1563987954",
             "vehicleNumber" : "6345163472324",
             "typeOfVehicle" : "Bike",
@@ -164,7 +164,7 @@
             "vendorStatus" : "Active"
         },{
             "id" : "19",
-            "vendorname" : "vendor 19",
+            "vendorname" : "vendor 2",
             "registeredDate" : "1554829554",
             "vehicleNumber" : "634534127436745",
             "typeOfVehicle" : "Truck",
