@@ -220,7 +220,7 @@ table tbody tr td:last-child{
 .filterSubMenu {
     position: absolute;
     background-color: #FFF;
-    padding: 15px 20px;
+    padding: 15px 20px 5px 20px;
     box-shadow: 1px 6px 7px #CCC;
     top: 57px;
     right: 0px;
@@ -243,6 +243,7 @@ table tbody tr td:last-child{
 .filterSubMenu ul {
     list-style: none;
     padding: 0;
+    margin-bottom: 0;
 }
 .filterSubMenu ul li {
     padding: 20px 0;
