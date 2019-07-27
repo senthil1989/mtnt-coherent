@@ -26,7 +26,7 @@ header .logo{
 }
 .seasonList .seasonSection {
     font-size: 18px;
-    padding: 30px 0px 200px 0;
+    padding: 30px 0px 160px 0;
     width: 90%;
     margin: 0 auto;
     float: none;
@@ -51,12 +51,11 @@ header .logo{
 .seasonList .listContainer .listTable{
     position: absolute;
     width: 100%;
-    top: -90px;
+    top: -140px;
     max-height: 600px;
     min-height: 600px;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #FFF;
 }
 table thead{
     background-color: #FFF;
@@ -128,6 +127,7 @@ td.rowSubMenu img.subMenuItem{
     position: absolute;
     background-color: #DEDAD4;
     margin: 0 30%;
+    display: none;
 }
 .popupAdd h3{ 
     font-size: 35px; 
@@ -168,5 +168,32 @@ td.rowSubMenu img.subMenuItem{
     width: 5%;
 }
 .seasonRows {
-    padding: 10px;
+    padding: 10px 0;
+}
+.seasonRows .rowHead .column{
+    font-size: 22px;
+    font-weight: bold;
+}
+.rowHead {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+.rowBody{
+    padding: 5px 0;
+    font-size: 20px;
+}
+.seasonRows .rowBody .rowSeason:nth-of-type(even){
+    background-color: #FFF;
+}
+.seasonRows .rowBody .rowSeason:nth-of-type(odd){
+    background-color: #E9E9E9;
+}
+.seasonRows .rowBody .rowSeason{
+    padding: 10px 0;
+    border-radius: 10px;
+}
+.filterSubMenu {
+    display: none;
 }
