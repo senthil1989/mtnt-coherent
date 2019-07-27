@@ -1,0 +1,92 @@
+<div class="container vehicleList">
+    <app-detailed-view *ngIf="showDetailedView" [vehicleList]="vehicleList" [vehicleDetailIndex]="vehicleDetailIndex" (detailedViewCloseEvent)="detailedViewCloseEvent()"></app-detailed-view>
+  <header>
+    <h3>{{ 'VEHICLELIST.VehicleList.VehicleList' | translate}}</h3>		
+    <div class="logo"><img src="../../../assets/images/olamcocoa.png"></div>
+  </header>
+
+  <div class="col-md-12 mainSection">
+    <div class="seasonSection">
+      <div class="seasonLabel">
+        <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
+        <div class="inline-block searchIcon"><img src="../../../assets/images/search.png"></div>
+        <span class="inline-block">{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}</span>
+        <select class="form-control inline-block" (change)="selectedSessonEvent($event)">
+          <option value="">{{ 'VEHICLEREGISTRATION.SelectSesson' | translate}}</option>
+          <option [selected] = "sesson.id == selectedSesson" *ngFor="let sesson of sessonList" [value] = "sesson.id">{{sesson.name}}</option>
+        </select>
+        <button class="btn btn-primary pull-right" (click)="navigateTo('/vehicleRegistration')">{{ 'VEHICLELIST.VehicleList.Register' | translate}}</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="clearfix"></div>
+  <div class="listContainer">
+    <div class="listTable" >
+      <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<span *ngIf="selectedVendorNames.length > 0">*</span><i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
+                <ul>
+                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 0" (click)="clearSelectedVendorNames()" class="fa fa-times"></i>
+                  <li *ngFor="let vendorName of uniqueVendorNameList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="!(selectedVendorNames.indexOf(vendorName) === -1)" type="checkbox" [name]="vendorName" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vendorName}}</li>
+                </ul>
+              </div></th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleNumber' | translate}}</th>
+            <th scope="col" >{{ 'VEHICLELIST.VehicleList.TypeofVehicle' | translate}}<span *ngIf="selectTypeOfVehicle.length > 0">*</span><i (click)="openFilterMenu(1)" class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
+                <ul>
+                    <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i *ngIf="selectTypeOfVehicle.length > 0" (click)="clearSelectedtypeOfVehicle()" class="fa fa-times"></i>
+                  <li *ngFor="let typeOfVehicle of uniqueVehicleTypeList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
+                      <label class="filter"><input [checked]="!(selectTypeOfVehicle.indexOf(typeOfVehicle) === -1)" type="checkbox" [name]="typeOfVehicle" (change)="typeOfVehicleSelectList($event)"><span class="checkmark"></span></label>{{typeOfVehicle}}</li>
+                
+                
+                </ul>
+              </div></th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorContact' | translate}}</th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<span *ngIf="vehicleStatusSelect">*</span><i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="filterSubMenu" *ngIf="tableHeaderFilter[2]">
+                <ul>
+                  <li><label class="filter"><input type="checkbox" name="Blocked" [checked]="vehicleStatusSelect === 'Blocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Unblocked" [checked]="vehicleStatusSelect === 'Unblocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
+                </ul>
+              </div></th>
+            <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<span *ngIf="vendorStatusSelect">*</span><i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="filterSubMenu" *ngIf="tableHeaderFilter[3]">
+                <ul>
+                  <li><label class="filter"><input type="checkbox" name="Active" [checked]="vendorStatusSelect === 'Active'" (change)="vendorStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Active' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Inactive" [checked]="vendorStatusSelect === 'Inactive'" (change)="vendorStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Inactive' | translate}}</li>
+                </ul>
+              </div></th>
+            <th (click)="clearAllFliter()"><span class="fullClearFilter" *ngIf="selectedVendorNames.length > 0 || selectTypeOfVehicle.length > 0 || vehicleStatusSelect || vendorStatusSelect || searchedVehicleNumber">X</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
+            <td>{{vehicle.vendorname}}</td>
+            <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{vehicle.vehicleNumber}}</td>
+            <td>{{vehicle.typeOfVehicle}}</td>
+            <td>{{vehicle.vendorContact}}</td>
+            <td>{{vehicle.vehicleStatus}}</td>
+            <td>{{vehicle.vendorStatus}}</td>
+            <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
+              <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
+              <ul>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/eye.png" width="36">{{ 'VEHICLELIST.VehicleList.View' | translate}}</li>
+                <li (click)="viewOrEditClickEvent(i)"><img src="../../../assets/images/pencil-edit-button.png" width="26">{{ 'VEHICLELIST.VehicleList.Edit' | translate}}</li>
+                <li><img src="../../../assets/images/rubbish-bin.png" width="25">{{ 'VEHICLELIST.VehicleList.Delete' | translate}}</li>
+              </ul>
+            </div></td>
+          </tr>
+          <tr *ngIf="vehicleList?.length === 0">
+            <td>No records to show</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

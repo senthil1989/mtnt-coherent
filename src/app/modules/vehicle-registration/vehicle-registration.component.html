@@ -1,6 +1,7 @@
 <div class="container">
     <header>
         <h3 class="font-weight-600">{{ 'VehicleRegistration' | translate}}</h3>
+        <div class="logo" (click)="navigateTo('/vehicleList')"><img src="../../../assets/images/olam cocoa.png"></div>
     </header>
     <div class="col-md-12">
         <div class="seasonSection">
@@ -19,8 +20,9 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="col-md-12 vehicleSection">
             <div class="col-md-4">
-                <i class="fa fa-user-o inline-block" aria-hidden="true"></i>
-                <h4 class="font-weight-600 inline-block">{{ 'VEHICLEREGISTRATION.VENDOR.VendorDetails' | translate}}</h4>
+                <div class="titleIcon"><img src="../../../assets/images/vendor-icon-outline.png" width="20"></div>
+                <h4 class="font-weight-600 titleContent">{{ 'VEHICLEREGISTRATION.VENDOR.VendorDetails' | translate}}</h4>
+                <div class="clearfix"></div>
                 <hr>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorName' | translate}}</label>
@@ -77,8 +79,9 @@
                 </div>
             </div>
             <div class="col-md-8 vehicleDetails">
-                <i class="fa fa-bus inline-block" aria-hidden="true"></i>
-                <h4 class="font-weight-600 inline-block">{{ 'VEHICLEREGISTRATION.VEHICLE.VehicleDetails' | translate}}</h4>
+                <div class="titleIcon"><img src="../../../assets/images/vehicle-icon-outline.png" width="47"></div>
+                <h4 class="font-weight-600 titleContent">{{ 'VEHICLEREGISTRATION.VEHICLE.VehicleDetails' | translate}}</h4>
+                <div class="clearfix"></div>
                 <hr>
                 <div class="col-md-6 ">
                     <div class="formLabel form-group">
@@ -130,11 +133,9 @@
                         <input formControlName="insuranceNumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.insuranceNumber?.errors }">
-                            <label for="insuranceFile">
-                            <input (change)="fileSelected('insurance', $event)" style="display: none" type="file" name="" id="insuranceFile">
-                            <img [src]="insuranceFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="insuranceFile"><a [href]="insuranceDownloadUrl" [download]="insuranceFile?.name">{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="insuranceFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            
+                            <div *ngIf="insuranceFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="insuranceDownloadUrl" target="_blank">{{insuranceFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="insuranceFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !insuranceFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.insuranceNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.insuranceNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.InsuranceNumberisrequired' | translate}}
                             </div>
@@ -142,43 +143,58 @@
                             </div>
                         </div>
                     </div>
+                    <div class="fileUploadIcon formLabel">
+                            <label>&nbsp;</label>
+                        <label for="insuranceFile">
+                            <input (change)="fileSelected('insurance', $event)" style="display: none" type="file" name="" id="insuranceFile">
+                            <img [src]="insuranceFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                    </div>
                     <div class="formLabel form-group">
                         <label>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumber' | translate}}</label>
                         <input formControlName="roadWorthyNumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.roadWorthyNumber?.errors }">
-                            <label for="roadWorthyFile">
-                            <input (change)="fileSelected('roadWorthy', $event)" style="display: none" type="file" name="" id="roadWorthyFile">
-                            <img [src]="roadWorthyFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="roadWorthyFile"><a [href]="roadWorthyDownloadUrl" [download]="roadWorthyFile?.name">{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="roadWorthyFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            
+                            <div *ngIf="roadWorthyFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="roadWorthyDownloadUrl" target="_blank">{{roadWorthyFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="roadWorthyFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !roadWorthyFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.roadWorthyNumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.roadWorthyNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.RoadWorthyNumberisrequired' | translate}}</div>
                             <div *ngIf="!!f.roadWorthyNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                             </div>
                         </div>
                     </div>
+                    <div class="fileUploadIcon formLabel">
+                            <label>&nbsp;</label>
+                            <label for="roadWorthyFile">
+                            <input (change)="fileSelected('roadWorthy', $event)" style="display: none" type="file" name="" id="roadWorthyFile">
+                            <img [src]="roadWorthyFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                    </div>
                     <div class="formLabel form-group">
                         <label>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormA' | translate}}</label>
                         <input formControlName="formCorAnumber" type="text" name=""
                             class="form-control form-control-input"
                             [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
-                            <label for="formCorFormAFile">
-                            <input (change)="fileSelected('formCorA', $event)" style="display: none" type="file" name="" id="formCorFormAFile">
-                            <img [src]="formCorFormAFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                            <div *ngIf="formCorFormAFile"><a [href]="formCorFormADownloadUrl" [download]="formCorFormAFile?.name">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="formCorFormAFile = null">Remove</a></div>
-                        <div class="invalid-feedback" *ngIf="!formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
+                            <div *ngIf="formCorFormAFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="formCorFormADownloadUrl" target="_blank">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="formCorFormAFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div class="invalid-feedback" *ngIf="submitted && !formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
                         <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
                             <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
                             </div>
                             <div *ngIf="!!f.formCorAnumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
+                    <div class="fileUploadIcon formLabel">
+                        <label>&nbsp;</label>
+                        <label for="formCorFormAFile">
+                        <input (change)="fileSelected('formCorA', $event)" style="display: none" type="file" name="" id="formCorFormAFile">
+                        <img [src]="formCorFormAFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
+                    </div>    
                 </div>
             </div>
+            <div class="clearfix"></div>
             <div class="col-md-4">
-                <i class="fa fa-user-o inline-block" aria-hidden="true"></i>
-                <h4 class="font-weight-600 inline-block">{{ 'VEHICLEREGISTRATION.DRIVER.DriverDetails' | translate}}</h4>
+                <div class="titleIcon"><img src="../../../assets/images/driver-icon-outline.png" width="23"></div>
+                <h4 class="font-weight-600 titleContent">{{ 'VEHICLEREGISTRATION.DRIVER.DriverDetails' | translate}}</h4>
+                <div class="clearfix"></div>
                 <hr>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.DriverName' | translate}} <span>{{ 'Optional' | translate}}</span></label>
@@ -202,19 +218,23 @@
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumber' | translate}} <span>{{ 'Optional' | translate}}</span></label>
                     <input formControlName="licenseNumber" type="text" name="" class="form-control form-control-input"
                         [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
-                        <label for="licenseFile">
-                                <input (change)="fileSelected('license', $event)" style="display: none" type="file" name="" id="licenseFile">
-                        <img [src]="licenseFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
-                        <div *ngIf="licenseFile"><a [href]="licenseDownloadUrl" [download]="licenseFile?.name">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
+                        <div *ngIf="licenseFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="licenseDownloadUrl" target="_blank">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                     <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
                         <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
                         <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
-                    </div>
+                    </div>                    
+                </div>
+                <div class="fileUploadIcon formLabel">
+                    <label>&nbsp;</label>
+                    <label for="licenseFile">
+                            <input (change)="fileSelected('license', $event)" style="display: none" type="file" name="" id="licenseFile">
+                    <img [src]="licenseFile ? uplodDoneIcon : uploadIcon" width="40px" class="inline-block"></label>
                 </div>
             </div>
             <div class="col-md-4">
-                <i class="fa fa-qrcode inline-block" aria-hidden="true"></i>
-                <h4 class="font-weight-600 inline-block">{{ 'VEHICLEREGISTRATION.QRCODE.QRCode' | translate}}</h4>
+                <div class="titleIcon"><img src="../../../assets/images/qrCode-icon.png" width="28"></div>
+                <h4 class="font-weight-600 titleContent">{{ 'VEHICLEREGISTRATION.QRCODE.QRCode' | translate}}</h4>
+                <div class="clearfix"></div>
                 <hr>
                 <div class="formLabel form-group">
                     <button name="" type="button" class="btn btn-primary scan-button" [ngClass]="{disable: !capturingDeviceFound}" (click)="openModal('qrScanner')"
@@ -241,9 +261,10 @@
             </div>
             </div>
             <div class="col-md-4 statusSection">
-				<i class="fa fa-flag-o inline-block" aria-hidden="true"></i>
-				<h4 class=" inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Status' | translate}}</h4>
-				<hr>
+                <div class="titleIcon"><img src="../../../assets/images/status-icon.png" width="24"></div>
+                <h4 class="font-weight-600 titleContent">{{ 'VEHICLEREGISTRATION.STATUS.Status' | translate}}</h4>
+                <div class="clearfix"></div>
+                <hr>
 				<div class="formLabel">
                     <span [ngClass]="{disable: getStatusChecked}" class="inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Unblock' | translate}}</span>
                     <label class="switch">
