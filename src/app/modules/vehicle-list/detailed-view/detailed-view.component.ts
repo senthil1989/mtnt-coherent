@@ -1,6 +1,16 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
+interface VehicleInterface {
+  vendorname: string;
+  registeredDate: number;
+  vehicleNumber: number;
+  typeOfVehicle: string;
+  vendorContact: number;
+  vehicleStatus: string;
+  vendorStatus: string;
+}
+
 @Component({
   selector: 'app-detailed-view',
   templateUrl: './detailed-view.component.html',
@@ -10,7 +20,7 @@ export class DetailedViewComponent implements OnInit {
   @Input() vehicleList;
   @Input() vehicleDetailIndex;
   @Output() detailedViewCloseEvent = new EventEmitter();
-  public vehicle: {};
+  public vehicle: VehicleInterface;
   constructor() { }
 
   ngOnInit() {
