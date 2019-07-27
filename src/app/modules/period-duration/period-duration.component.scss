@@ -159,3 +159,14 @@ td.rowSubMenu img.subMenuItem{
 .popupAdd .col-sm-5{
     padding: 0;
 }
+.seasonRows .column {
+    padding: 10px;
+    width: 19%;
+    float: left;
+}
+.seasonRows .column.last {
+    width: 5%;
+}
+.seasonRows {
+    padding: 10px;
+}
