@@ -1,3 +1,84 @@
-<p>
-  period-duration works!
-</p>
+<div class="container seasonList">
+  <header>
+    <h3>Period Duration</h3>		
+    <div class="logo"><img src="../../../assets/images/olam cocoa.png"></div>
+  </header>
+  <div class="col-md-12 mainSection">
+    <div class="seasonSection">
+        <button class="btn btn-primary pull-right">Add Time Slot</button>
+    </div>  
+  </div>
+  <div class="clearfix"></div>
+  <div class="listContainer">
+    <div class="listTable" >
+      
+      <div class="popupAdd">
+        <div class="col-sm-12">
+          <h3 class="col-sm-12">Add New Time Slot</h3>
+          <div class="form-group col-sm-12">
+            <label class="col-sm-12">Organization Name</label>
+            <div class="col-sm-12">
+              <input type="text" class="form-control" placeholder="Enter Organization Name">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="col-sm-5">
+              <label>Start Duration</label>
+              <input type="text" class="form-control" placeholder="Start Month">
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+              <label>&nbsp;</label>
+              <input type="text" class="form-control" placeholder="Start Year">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="col-sm-5">
+              <label>End Duration</label>
+              <input type="text" class="form-control" placeholder="End Month">
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+              <label>&nbsp;</label>
+              <input type="text" class="form-control" placeholder="End Year">
+            </div>
+          </div>
+          <div class="col-sm-12">
+              <button class="btn btn-primary pull-right">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Purchase Organization</th>
+            <th>Start Month</th>
+            <th>Start Year</th>
+            <th>End Month</th>
+            <th>End Year</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Thor Industries</td>
+            <td>August</td>
+            <td>2019</td>
+            <td>July</td>
+            <td>2019</td>
+            <td class="rowSubMenu"><img src="../../../assets/images/menu-item.png" class="subMenuItem">
+              <div class="filterSubMenu listItemVED">
+              <ul>
+                <li><img src="../../../assets/images/pencil-edit-button.png" width="26">Edit</li>
+                <li><img src="../../../assets/images/rubbish-bin.png" width="25">Delete</li>
+              </ul>
+            </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  
