@@ -1,0 +1,161 @@
+.container{
+    width: 90% !important;
+    padding: 0;
+}
+.seasonList header{
+    text-align: center;
+    padding: 32px 20px;
+    background-color: #E9E9E9;
+       border-bottom: 1px solid #FFF;
+}
+header .logo{
+    width: auto;
+    position: absolute;
+    top: 0px;
+    padding: 20px 10px;
+}
+
+.seasonList header h3{
+    margin: 0;
+    font-weight: 600;
+    font-size: 40px;
+    color: #000;
+}
+.seasonList .mainSection{
+    background-color: #0b4b52;
+}
+.seasonList .seasonSection {
+    font-size: 18px;
+    padding: 30px 0px 200px 0;
+    width: 90%;
+    margin: 0 auto;
+    float: none;
+    position: relative;
+}
+.seasonList .seasonSection button{ 
+    font-size: 28px;
+    background-color: #00adc6;
+    padding: 5px 80px; 
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.seasonList .listContainer{
+    font-size: 18px;
+    padding: 30px 0px 150px 0;
+    width: 90%;
+    margin: 0 auto;
+    float: none;
+    position: relative;
+    
+}
+.seasonList .listContainer .listTable{
+    position: absolute;
+    width: 100%;
+    top: -90px;
+    max-height: 600px;
+    min-height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #FFF;
+}
+table thead{
+    background-color: #FFF;
+    font-size: 20px;
+}
+table thead th, table tbody td{ padding:15px 20px !important }
+table tbody tr:nth-child(odd) {
+    background-color: #e6e6e6;
+    font-family: "Helvetica Neue",sans-serif;
+}
+table tbody tr:nth-child(even) {
+    background-color: #FFF;
+    font-family: "Helvetica Neue",sans-serif;
+}
+table tbody tr td:last-child{
+    cursor: pointer;
+}
+table tbody tr td:last-child, table thead tr th:last-child{
+    padding: 10px !important;   
+}
+.filterSubMenu {
+    position: absolute;
+    background-color: #FFF;
+    padding: 15px 20px 5px 20px;
+    box-shadow: 1px 6px 7px #CCC;
+    top: 57px;
+    right: 0px;
+    width: 250px;
+    z-index: 1;
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.filterSubMenu i{
+    margin-left: 2px;
+    margin-top: 5px;
+}
+.filterSubMenu ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.filterSubMenu ul li {
+    padding: 20px 0;
+    border-bottom: 1px solid;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 20px;
+    vertical-align: middle;
+
+}
+.filterSubMenu ul li:last-child {
+    border-bottom: 0px;
+}
+.rowSubMenu {
+    position: relative;
+}
+.rowHighlight {
+    border: 1px solid #000;
+}
+.listItemVED ul img{
+margin-right: 15px;
+}
+td.rowSubMenu img.subMenuItem{
+    padding: 10px;
+}
+.popupAdd {
+    width: 40%;
+    position: absolute;
+    background-color: #DEDAD4;
+    margin: 0 30%;
+}
+.popupAdd h3{ 
+    font-size: 35px; 
+    font-weight: 600;
+}
+.popupAdd label{
+    font-size: 17px;
+}
+.popupAdd input {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 4px;
+    height: 60px;
+}
+.popupAdd .popupRow {
+    margin-bottom: 30px;
+}
+.popupAdd input:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
+.popupAdd .col-sm-5{
+    padding: 0;
+}
