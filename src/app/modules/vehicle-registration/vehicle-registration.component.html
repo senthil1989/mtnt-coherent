@@ -26,12 +26,12 @@
                 <hr>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorName' | translate}}</label>
-                    <select class="form-control form-control-input" formControlName="vendorName"
-                        [ngClass]="{ 'is-invalid': submitted && f.vendorName?.errors }">
+                    <select class="form-control form-control-input" formControlName="vendorID"
+                        [ngClass]="{ 'is-invalid': submitted && f.vendorID?.errors }">
                         <option value="">{{ 'VEHICLEREGISTRATION.VENDOR.SelectVendorName' | translate}}</option>
                         <option *ngFor="let vendor of vendorList" [value]="vendor.id">{{vendor.name}}</option>
                     </select>
-                    <div class="invalid-feedback" *ngIf="submitted && !!f.vendorName.errors?.required">
+                    <div class="invalid-feedback" *ngIf="submitted && !!f.vendorID.errors?.required">
                         <sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.Pleaseselectvendorname' | translate}}
                     </div>
                 </div>
@@ -45,35 +45,35 @@
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddress' | translate}}</label>
-                    <input formControlName="VendorAddress" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.vendorAddress' | translate}}</label>
+                    <input formControlName="vendorAddress" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.VendorAddress?.errors }">
-                    <div *ngIf="submitted && !!f.VendorAddress?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.VendorAddress?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddressrequired' | translate}}</div>
-                        <div *ngIf="!!f.VendorAddress?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.vendorAddress?.errors }">
+                    <div *ngIf="submitted && !!f.vendorAddress?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.vendorAddress?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.vendorAddressrequired' | translate}}</div>
+                        <div *ngIf="!!f.vendorAddress?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerName' | translate}}</label>
-                    <input formControlName="TransportOfficerName" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerName' | translate}}</label>
+                    <input formControlName="transportOfficerName" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerName?.errors }">
-                    <div *ngIf="submitted && !!f.TransportOfficerName?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.TransportOfficerName?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerNamerequired' | translate}}</div>
-                        <div *ngIf="!!f.TransportOfficerName?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.transportOfficerName?.errors }">
+                    <div *ngIf="submitted && !!f.transportOfficerName?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.transportOfficerName?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerNamerequired' | translate}}</div>
+                        <div *ngIf="!!f.transportOfficerName?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContact' | translate}}</label>
-                    <input formControlName="TransportOfficerContact" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerContact' | translate}}</label>
+                    <input formControlName="transportOfficerContact" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerContact?.errors }">
-                    <div *ngIf="submitted && !!f.TransportOfficerContact?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.TransportOfficerContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContactrequired' | translate}}</div>
-                        <div *ngIf="!!f.TransportOfficerContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.transportOfficerContact?.errors }">
+                    <div *ngIf="submitted && !!f.transportOfficerContact?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.transportOfficerContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContactrequired' | translate}}</div>
+                        <div *ngIf="!!f.transportOfficerContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
@@ -116,14 +116,14 @@
                         </div>
                     </div>
                     <div class="formLabel form-group">
-                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehicle' | translate}}</label>
-                        <input formControlName="CapacityOfVehicle" type="text" name=""
+                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.capacityOfVehicle' | translate}}</label>
+                        <input formControlName="capacityOfVehicle" type="text" name=""
                             class="form-control form-control-input"
-                            [ngClass]="{ 'is-invalid': submitted && !!f.CapacityOfVehicle?.errors }">
-                        <div *ngIf="submitted && !!f.CapacityOfVehicle?.errors" class="invalid-feedback">
-                            <div *ngIf="!!f.CapacityOfVehicle?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehiclerequired' | translate}}
+                            [ngClass]="{ 'is-invalid': submitted && !!f.capacityOfVehicle?.errors }">
+                        <div *ngIf="submitted && !!f.capacityOfVehicle?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.capacityOfVehicle?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.capacityOfVehiclerequired' | translate}}
                             </div>
-                            <div *ngIf="!!f.CapacityOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                            <div *ngIf="!!f.capacityOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
                 </div>
@@ -171,15 +171,15 @@
                     </div>
                     <div class="formLabel form-group">
                         <label>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormA' | translate}}</label>
-                        <input formControlName="formCorAnumber" type="text" name=""
+                        <input formControlName="formCorANumber" type="text" name=""
                             class="form-control form-control-input"
-                            [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
+                            [ngClass]="{ 'is-invalid': submitted && !!f.formCorANumber?.errors }">
                             <div *ngIf="formCorFormAFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="formCorFormADownloadUrl" target="_blank">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="formCorFormAFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                         <div class="invalid-feedback" *ngIf="submitted && !formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
-                        <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
-                            <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
+                        <div *ngIf="submitted && !!f.formCorANumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.formCorANumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
                             </div>
-                            <div *ngIf="!!f.formCorAnumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                            <div *ngIf="!!f.formCorANumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
                     <div class="fileUploadIcon formLabel">
@@ -278,7 +278,55 @@
         </div>
         <div class="vehicleFooter">
             <div class="pull-right form-group">
-                <button class="btn btn-success">{{ 'Submit' | translate}}</button>
+                <button class="btn btn-success">{{ 'Submit' | translate}}<svg *ngIf="showLoader" class="lds-spinner" width="30px"  height="30px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><g transform="rotate(0 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(30 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(60 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(90 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(120 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(150 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(180 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(210 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(240 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(270 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(300 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g><g transform="rotate(330 50 50)">
+                    <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#030303">
+                      <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+                    </rect>
+                  </g></svg></button>
             </div>
         </div>
     </form>

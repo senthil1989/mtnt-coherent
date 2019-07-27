@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: '',
+  apiUrl: 'http://192.168.1.115:8080/',
   socketUrl: '',
   encryption_key: '',
   GoogleOAuthClientId: '',

@@ -32,11 +32,8 @@ export class ApiService {
     this.apiHeaders = new HttpHeaders();
     this.apiHeaders.headers['Accept'] = 'application/json';
     this.apiHeaders.headers['X-REQUEST-TYPE'] = 'web';
-    if (localStorage.getItem('currentLanguage')) {
-      this.apiHeaders.headers['X-LANGUAGE-CODE'] = localStorage.getItem('currentLanguage');
-    } else {
+
       this.apiHeaders.headers['X-LANGUAGE-CODE'] = 'en';
-    }
     // if (this.authorization.hasOwnProperty('response')) {
     //   this.apiHeaders.headers['Authorization'] = 'Bearer ' + this.authorization.response.access_token;
     // }

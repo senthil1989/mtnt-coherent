@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { ApiService } from '../../core/services/api.service';
 import { ModalService } from '../../core/services/model.service';
+
 
 @Component({
   selector: 'app-vehicle-registration',
@@ -39,39 +41,118 @@ export class VehicleRegistrationComponent implements OnInit {
   public roadWorthyDownloadUrl: SafeHtml;
   public formCorFormADownloadUrl: SafeHtml;
   public licenseDownloadUrl: SafeHtml;
+  public showLoader = false;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService,
     private domSanitizer: DomSanitizer,
-    private router: Router) { }
+    private router: Router,
+    private toasterService: ToastrService) { }
 
   ngOnInit() {
     this.currentDate = new Date();
     this.formatedCurrentDate = `${this.currentDate.getDate()}-${this.currentDate.getMonth() + 1}-${this.currentDate.getFullYear()}`;
     this.registerForm = this.formBuilder.group({
-      vendorName: ['', Validators.required],
-      vendorContact: ['', [Validators.required, Validators.minLength(0)]],
-      VendorAddress: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
-      TransportOfficerName: ['', [Validators.required, Validators.minLength(0)]],
-      TransportOfficerContact: ['', [Validators.required, Validators.minLength(0)]],
       vehicleNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
       chassisNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
+      QRCode: ['', [Validators.required, Validators.minLength(0)]],
       typeOfVehicle: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
-      CapacityOfVehicle: ['', [Validators.required, Validators.minLength(0)]],
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
       roadWorthyNumber: ['', [Validators.required, Validators.minLength(0)]],
-      formCorAnumber: ['', [Validators.required, Validators.minLength(0)]],
+      formCorANumber: ['', [Validators.required, Validators.minLength(0)]],
+      vendorContact: ['', [Validators.required, Validators.minLength(0)]],
+      vendorAddress: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
+      transportOfficerName: ['', [Validators.required, Validators.minLength(0)]],
+      transportOfficerContact: ['', [Validators.required, Validators.minLength(0)]],
+      capacityOfVehicle: ['', [Validators.required, Validators.minLength(0)]],
+      createdBy: ['coherent', [Validators.required, Validators.minLength(0)]],
+      modifiedBy: [''],
+      modifiedTime: [''],
+      createdTime: ['', [Validators.required, Validators.minLength(0)]],
+      seasonID: ['1', [Validators.required, Validators.minLength(0)]],
+      vendorID: ['', [Validators.required, Validators.minLength(0)]],
+      status: ['BLOCK', [Validators.required, Validators.minLength(0)]],
+      QRCodeRescan: ['N', [Validators.required, Validators.minLength(0)]],
+      softDelete: ['0', [Validators.required, Validators.minLength(0)]],
+      blockID: ['1', [Validators.required, Validators.minLength(0)]],
       driverName: [''],
       driverContact: [''],
       licenseNumber: [''],
-
     });
-    this.apiService.callGetAPI('../../../assets/json/vendorList.json').subscribe(data => {
-      this.vendorList = data['vendorList'];
-    });
-    this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
-      this.sessonList = data['sessonList'];
-    });
+    this.vendorList = [
+      {
+        id: '1',
+        name: 'Vendor 1'
+      },
+      {
+        id: '2',
+        name: 'Vendor 2'
+      },
+      {
+        id: '3',
+        name: 'Vendor 3'
+      },
+      {
+        id: '4',
+        name: 'Vendor 4'
+      },
+      {
+        id: '5',
+        name: 'Vendor 5'
+      },
+      {
+        id: '6',
+        name: 'Vendor 6'
+      },
+      {
+        id: '7',
+        name: 'Vendor 7'
+      }
+    ];
+    this.sessonList = [
+      {
+        id: '1',
+        name: 'Aug 2010 - Jul 2011'
+      },
+      {
+        id: '2',
+        name: 'Aug 2011 - Jul 2012'
+      },
+      {
+        id: '3',
+        name: 'Aug 2012 - Jul 2013'
+      },
+      {
+        id: '4',
+        name: 'Aug 2013 - Jul 2014'
+      },
+      {
+        id: '5',
+        name: 'Aug 2014 - Jul 2015'
+      },
+      {
+        id: '6',
+        name: 'Aug 2015 - Jul 2016'
+      },
+      {
+        id: '7',
+        name: 'Aug 2016 - Jul 2017'
+      },
+      {
+        id: '7',
+        name: 'Aug 2017 - Jul 2018'
+      },
+      {
+        id: '7',
+        name: 'Aug 2018 - Jul 2019'
+      }
+    ];
+    // this.apiService.callGetAPI('../../../assets/json/vendorList.json').subscribe(data => {
+    //   this.vendorList = data['vendorList'];
+    // });
+    // this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
+    //   this.sessonList = data['sessonList'];
+    // });
   }
 
   openModal(id: string) {
@@ -87,27 +168,26 @@ export class VehicleRegistrationComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    const currentTimeStamp = Math.round(new Date().getTime() / 1000);
+    this.registerForm.controls['createdTime'].setValue(currentTimeStamp);
     this.submitted = true;
     if (this.registerForm.invalid || (!this.getStatusChecked && (!this.insuranceFile || !this.roadWorthyFile || !this.formCorFormAFile || !this.qrCodeNumber))) {
       return;
     }
-    console.log(this.registerForm.value);
-    const vehicleDetails = this.registerForm.value;
-    this.apiService.callPostAPI('mtnt/api/vehicle/addNewVehicle', {
-      VehicleNumber : vehicleDetails.vehicleNumber,
-      ChassisNumber : vehicleDetails.chassisNumber,
-      TypeOfVehicle : vehicleDetails.typeOfVehicle,
-      VendorContact : vehicleDetails.vendorContact,
-      VendorLogisticsContact :  vehicleDetails.vendorLogisticsNumber,
-      InsuranceNumber : vehicleDetails.insuranceNumber,
-      RoadWorthyNumber : vehicleDetails.roadWorthyNumber,
-      FormCOrANumber : vehicleDetails.formCorAnumber,
-      VendorId : vehicleDetails.vendorName
-    }).subscribe(data => {
-      console.log(data);
+    this.showLoader = true;
+    this.apiService.callPostAPI('addNewVehicle', this.registerForm.value).subscribe(data => {
+      if (data['statusCode'] === '1') {
+        this.toasterService.success('Vehicle Registered Successfully');
+        this.router.navigate(['/vehicleList']);
+      } else {
+        this.showLoader = false;
+        this.toasterService.error('Vehicle not Registered, Please register again!');
+      }
+    }, error => {
+      this.showLoader = false;
+      this.toasterService.error('Unable to connect with server, Please try again!');
     });
   }
-
 
   camerasFoundHandler(e) {
     if (e) {
@@ -124,6 +204,7 @@ export class VehicleRegistrationComponent implements OnInit {
   scanSuccessHandler(e) {
     if (e) {
       this.qrCodeNumber = e;
+      this.registerForm.controls['QRCode'].setValue(this.qrCodeNumber);
       this.scanSuccess = true;
       this.closeModal('qrScanner');
     }
