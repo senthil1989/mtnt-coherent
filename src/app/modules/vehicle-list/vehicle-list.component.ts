@@ -22,8 +22,8 @@ export class VehicleListComponent implements OnInit {
   public showDetailedView: Boolean = false;
   public vehicleDetailIndex: number;
   public dummyVehicleList: object[] = [];
-  public vehicleListForHeader: object[];
   public selectedVendorNames: string[] = [];
+  public checkedVendornames: boolean[];
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler(event: KeyboardEvent) {
@@ -41,7 +41,7 @@ export class VehicleListComponent implements OnInit {
     });
     this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
       this.vehicleList = data['vehicleList'];
-      this.vehicleListForHeader = data['vehicleList'];
+      this.checkedVendornames = this.uniqueVendorNameList.map(_ => false);
       this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
@@ -101,6 +101,13 @@ export class VehicleListComponent implements OnInit {
         this.selectedVendorNames = this.findAndRemoveFromArray(this.selectedVendorNames, e.srcElement.name);
       }
     }
+    this.uniqueVendorNameList.forEach((val, index) => {
+      if (this.selectedVendorNames.indexOf(val) === 0) {
+        this.checkedVendornames[index] = true;
+      } else {
+        this.checkedVendornames[index] = false;
+      }
+    });
   }
 
   findAndRemoveFromArray(array: string[], findValue: string) {
@@ -109,6 +116,37 @@ export class VehicleListComponent implements OnInit {
       array.splice(index, 1);
     }
     return array;
+  }
+
+  vendorSelectedList(i) {
+
+  }
+
+  get uniqueVendorNameList() {
+    const uniqueVendorNames = [];
+    this.vehicleList.forEach((val) => {
+      if (uniqueVendorNames.indexOf(val['vendorname']) === -1) {
+        uniqueVendorNames.push(val['vendorname']);
+      }
+    });
+    return uniqueVendorNames;
+  }
+
+  get uniqueVehicleTypeList() {
+    const uniqueVehicleType = [];
+    this.vehicleList.forEach((val) => {
+      if (uniqueVehicleType.indexOf(val['typeOfVehicle']) === -1) {
+        uniqueVehicleType.push(val['typeOfVehicle']);
+      }
+    });
+    return uniqueVehicleType;
+  }
+
+  clearSelectedVendorNames() {
+    this.selectedVendorNames = [];
+    this.searchedVendorName = null;
+    this.checkedVendornames = this.uniqueVendorNameList.map(_ => false);
+    this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
   }
 
 }

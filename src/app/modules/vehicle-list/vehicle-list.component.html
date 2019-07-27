@@ -29,8 +29,8 @@
             <th scope="col" >{{ 'VEHICLELIST.VehicleList.Vendor' | translate}}<i (click)="openFilterMenu(0)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu first" *ngIf="tableHeaderFilter[0]">
                 <ul>
-                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 1" (click)="selectedVendorNames = []" class="fa fa-times"></i>
-                  <li *ngFor="let vehicle of vehicleListForHeader | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="vehicle.vendorname === selectedVendorNames[i]" type="checkbox" [name]="vehicle.vendorname" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vehicle.vendorname}}</li>
+                  <input type="text" [(ngModel)]="searchedVendorName"><i *ngIf="selectedVendorNames.length > 1" (click)="clearSelectedVendorNames()" class="fa fa-times"></i>
+                  <li *ngFor="let vendorName of uniqueVendorNameList | vendorNameFilter:searchedVendorName;let i = index"><label class="filter"><input [checked]="checkedVendornames[i]" type="checkbox" [name]="vendorName" (change)="vendorNameSelectList($event)"><span class="checkmark"></span></label>{{vendorName}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.RegisteredDate' | translate}}</th>
@@ -39,8 +39,8 @@
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[1]">
                 <ul>
                     <input type="text" [(ngModel)]="searchedTypeOfVehicle"><i class="fa fa-times"></i>
-                  <li *ngFor="let vehicle of vehicleListForHeader | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
-                      <label class="filter"><input type="checkbox" name=""><span class="checkmark"></span></label>{{vehicle.typeOfVehicle}}</li>
+                  <li *ngFor="let typeOfVehicle of uniqueVehicleTypeList | typeOfVehicleFilter:searchedTypeOfVehicle;let i = index">
+                      <label class="filter"><input type="checkbox" [name]="typeOfVehicle"><span class="checkmark"></span></label>{{typeOfVehicle}}</li>
                 
                 
                 </ul>
