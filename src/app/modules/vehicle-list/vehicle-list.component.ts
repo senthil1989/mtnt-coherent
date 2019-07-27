@@ -111,4 +111,8 @@ export class VehicleListComponent implements OnInit {
     return array;
   }
 
+  vendorSelectedList(i) {
+
+  }
+
 }
