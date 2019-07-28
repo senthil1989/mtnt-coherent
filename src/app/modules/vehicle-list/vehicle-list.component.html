@@ -65,13 +65,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
-            <td>{{vehicle.vendorname}}</td>
-            <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
-            <td>{{vehicle.vehicleNumber}}</td>
-            <td>{{vehicle.typeOfVehicle}}</td>
-            <td>{{vehicle.vendorContact}}</td>
-            <td>{{vehicle.vehicleStatus}}</td>
-            <td>{{vehicle.vendorStatus}}</td>
+            <td>{{ vehicle.vendorname }}</td>
+            <td>{{ vehicle.registeredDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ vehicle.vehicleNumber }}</td>
+            <td>{{ vehicle.typeOfVehicle }}</td>
+            <td>{{ vehicle.vendorContact }}</td>
+            <td>{{ vehicle.vehicleStatus }}</td>
+            <td>{{ vehicle.vendorStatus }}</td>
             <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
               <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
               <ul>

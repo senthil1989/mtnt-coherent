@@ -184,5 +184,5 @@ export class VehicleListComponent implements OnInit {
         return false;
     }
     return true;
-}
+  }
 }

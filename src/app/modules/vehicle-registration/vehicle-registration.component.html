@@ -266,19 +266,19 @@
                 <div class="clearfix"></div>
                 <hr>
 				<div class="formLabel">
-                    <span [ngClass]="{disable: getStatusChecked}" class="inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Unblock' | translate}}</span>
+                    <span [ngClass]="{disable: getStatusChecked}" class="inline-block status-label">{{ 'VEHICLEREGISTRATION.STATUS.Unblock' | translate}}</span>
                     <label class="switch">
                         <input type="checkbox" [checked] = "!checkStatus" (change)="statusChangeEvent($event)">
                         <span class="slider round"></span>
                       </label>
-                      <span [ngClass]="{disable: !getStatusChecked}" class="inline-block">{{ 'VEHICLEREGISTRATION.STATUS.Block' | translate}}</span>
+                      <span [ngClass]="{disable: !getStatusChecked}" class="inline-block status-label">{{ 'VEHICLEREGISTRATION.STATUS.Block' | translate}}</span>
 				</div>
 				
 			</div>
         </div>
         <div class="vehicleFooter">
             <div class="pull-right form-group">
-                <button class="btn btn-success">{{ 'Submit' | translate}}<span *ngIf="showLoader">...</span> </button>
+                <button class="btn btn-success submit-btn">{{ 'Submit' | translate}}<span *ngIf="showLoader">...</span> </button>
             </div>
         </div>
     </form>
