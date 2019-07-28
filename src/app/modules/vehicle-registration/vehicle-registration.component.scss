@@ -49,7 +49,7 @@ i.fa{
     padding: 0;
 }
 .vehicleSection{
-    background-color: #e2e1e1;
+    background-color: #E9E9E9;
     padding: 30px 20px 10px;
 }
 .vehicleSection hr{
@@ -79,9 +79,7 @@ label{
 .vehicleFooter .pull-right{
         padding: 20px 50px;
 }
-.vehicleFooter button{
-    padding: 5px 30px;
-}
+
 .formLabel span{
     color:#018295;
 }
@@ -189,7 +187,7 @@ app-modal {
     margin: 0px;
 }
 .vehicleSection{
-    background-color: #e2e1e1;
+    background-color: #E9E9E9;
     padding: 40px 60px 10px;
 }
 .vehicleSection hr{
@@ -206,7 +204,7 @@ app-modal {
     font-weight: normal;
     font-size: 18px;
     font-family: "Helvetica Neue",sans-serif;
-    color: #676767;
+    color: #707070;
     width: 100%;
     padding-bottom: 10px;
 }
@@ -303,7 +301,7 @@ i.fa{
     height: auto;
     padding: 5px 30px;
 }
-.seasonLabel input[type="text"]{ width: 200px; background-color: #CCC; }
+.seasonLabel input[type="text"]{ width: 200px; background-color: #DEDAD4; color: #000 !important; }
 .seasonLabel span { margin-left: 5% }
 
 
@@ -318,6 +316,7 @@ i.fa{
     opacity: 0;
     width: 0;
     height: 0;
+    
   }
   
   .slider {
@@ -327,9 +326,10 @@ i.fa{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
+    background-color: #e2e1e1;
+    border: 2px solid #000;
   }
   
   .slider:before {
@@ -337,15 +337,16 @@ i.fa{
     content: "";
     height: 26px;
     width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    left: 2px;
+    bottom: 2px;
+    background-color: #018295;
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #e2e1e1;
+    border: 2px solid #000;
   }
   
   input:focus + .slider {
@@ -383,3 +384,19 @@ i.fa{
       color: #da7979 !important;
       cursor: pointer !important;
   }
+
+  .status-label {
+      color: #000 !important;
+  }
+
+  a {
+    color: #00ACC6 !important;
+  }
+
+  .submit-btn {
+    background-color: #A0C800 !important;
+    border-color: #A0C800 !important;
+  }
+
+
+  

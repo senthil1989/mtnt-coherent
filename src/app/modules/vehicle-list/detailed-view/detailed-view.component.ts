@@ -1,15 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
-interface VehicleInterface {
-  vendorname: string;
-  registeredDate: number;
-  vehicleNumber: number;
-  typeOfVehicle: string;
-  vendorContact: number;
-  vehicleStatus: string;
-  vendorStatus: string;
-}
+import { VehicleList } from '../vehicle-list-interface/vehicle-list.interface';
 
 @Component({
   selector: 'app-detailed-view',
@@ -17,10 +9,10 @@ interface VehicleInterface {
   styleUrls: ['./detailed-view.component.scss']
 })
 export class DetailedViewComponent implements OnInit {
-  @Input() vehicleList;
-  @Input() vehicleDetailIndex;
+  @Input() vehicleList: VehicleList[];
+  @Input() vehicleDetailIndex: number;
   @Output() detailedViewCloseEvent = new EventEmitter();
-  public vehicle: VehicleInterface;
+  public vehicle: VehicleList;
   constructor() { }
 
   ngOnInit() {

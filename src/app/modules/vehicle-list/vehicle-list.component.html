@@ -8,7 +8,7 @@
   <div class="col-md-12 mainSection">
     <div class="seasonSection">
       <div class="seasonLabel">
-        <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
+        <input type="text" (keypress)="isNumber($event)" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
         <div class="inline-block searchIcon"><img src="../../../assets/images/search.png"></div>
         <span class="inline-block">{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}</span>
         <select class="form-control inline-block" (change)="selectedSessonEvent($event)">
@@ -65,13 +65,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
-            <td>{{vehicle.vendorname}}</td>
-            <td>{{vehicle.registeredDate | date: 'dd-MM-yyyy'}}</td>
-            <td>{{vehicle.vehicleNumber}}</td>
-            <td>{{vehicle.typeOfVehicle}}</td>
-            <td>{{vehicle.vendorContact}}</td>
-            <td>{{vehicle.vehicleStatus}}</td>
-            <td>{{vehicle.vendorStatus}}</td>
+            <td>{{ vehicle.vendorname }}</td>
+            <td>{{ vehicle.registeredDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ vehicle.vehicleNumber }}</td>
+            <td>{{ vehicle.typeOfVehicle }}</td>
+            <td>{{ vehicle.vendorContact }}</td>
+            <td>{{ vehicle.vehicleStatus }}</td>
+            <td>{{ vehicle.vendorStatus }}</td>
             <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
               <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
               <ul>
@@ -81,8 +81,8 @@
               </ul>
             </div></td>
           </tr>
-          <tr *ngIf="vehicleList?.length === 0">
-            <td>No records to show</td>
+          <tr>
+            <td class="noRecords" colspan="8"  *ngIf="(vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber)?.length === 0">No records to show</td>
           </tr>
         </tbody>
       </table>

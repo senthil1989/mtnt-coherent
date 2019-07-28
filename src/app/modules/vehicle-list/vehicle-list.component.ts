@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../core/services/api.service';
+import { VehicleList } from './vehicle-list-interface/vehicle-list.interface';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -13,7 +14,7 @@ export class VehicleListComponent implements OnInit {
   public sessonList: [];
   public selectedSesson = 2;
   public getSelectedSessonId: Number;
-  public vehicleList: object[];
+  public vehicleList: VehicleList[];
   public searchedVehicleNumber: Number;
   public tableHeaderFilter: Boolean[] = [false, false, false, false];
   public rowSubMenu: boolean[];
@@ -27,7 +28,7 @@ export class VehicleListComponent implements OnInit {
   public vehicleStatusSelect: string;
   public vendorStatusSelect: string;
   @HostListener('document:keydown.escape', ['$event'])
-  onEscapeKeydownHandler(event: KeyboardEvent) {
+  onEscapeKeydownHandler() {
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
     this.rowSubMenu = this.rowSubMenu.map(_ => false);
   }
@@ -42,7 +43,7 @@ export class VehicleListComponent implements OnInit {
     });
     this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
       this.vehicleList = data['vehicleList'];
-            this.rowSubMenu = this.vehicleList.map(_ => false);
+      this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
 
@@ -175,5 +176,13 @@ export class VehicleListComponent implements OnInit {
 
   vendorStatusSelectEvent(e) {
     this.vendorStatusSelect = e.srcElement.checked ? e.srcElement.name : undefined;
+  }
+
+  isNumber(evt) {
+    const charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
   }
 }
