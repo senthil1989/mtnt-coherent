@@ -81,8 +81,8 @@
               </ul>
             </div></td>
           </tr>
-          <tr *ngIf="vehicleList?.length === 0">
-            <td>No records to show</td>
+          <tr>
+            <td class="noRecords" colspan="8"  *ngIf="(vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber)?.length === 0">No records to show</td>
           </tr>
         </tbody>
       </table>

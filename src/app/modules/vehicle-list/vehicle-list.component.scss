@@ -341,3 +341,8 @@ table tbody tr td:last-child{
       cursor: pointer !important;
       font-size: 24px;
   }
+
+  .noRecords {
+    text-align: center;
+    color: #f37575;
+  }

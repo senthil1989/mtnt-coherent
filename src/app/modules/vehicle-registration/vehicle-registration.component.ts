@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { ApiService } from '../../core/services/api.service';
 import { ModalService } from '../../core/services/model.service';
+import { RegisteredForm, DriverDetails } from './vehicle-registration-interface/vehicle-registration.interface';
 
 
 @Component({
@@ -42,6 +43,8 @@ export class VehicleRegistrationComponent implements OnInit {
   public formCorFormADownloadUrl: SafeHtml;
   public licenseDownloadUrl: SafeHtml;
   public showLoader = false;
+  public registeredFormFinal: RegisteredForm;
+  public driverDetails: DriverDetails;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService,
@@ -55,7 +58,7 @@ export class VehicleRegistrationComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       vehicleNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
       chassisNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
-      QRCode: ['', [Validators.required, Validators.minLength(0)]],
+      QRCode: ['', [Validators.minLength(0)]],
       typeOfVehicle: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
       roadWorthyNumber: ['', [Validators.required, Validators.minLength(0)]],
@@ -76,8 +79,8 @@ export class VehicleRegistrationComponent implements OnInit {
       softDelete: ['0', [Validators.required, Validators.minLength(0)]],
       blockID: ['1', [Validators.required, Validators.minLength(0)]],
       driverName: [''],
-      driverContact: [''],
-      licenseNumber: [''],
+      driverPhone: [''],
+      driverLicenseNumber: [''],
     });
     this.vendorList = [
       {
@@ -175,18 +178,57 @@ export class VehicleRegistrationComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    this.apiService.callPostAPI('addNewVehicle', this.registerForm.value).subscribe(data => {
+    this.registeredFormFinal = this.registerForm.value;
+    this.apiRequestToNewVehicle(this.registeredFormFinal);
+  }
+
+  apiRequestToNewVehicle(registeredFormFinal: RegisteredForm) {
+    this.apiService.callPostAPI('addNewVehicle', registeredFormFinal).subscribe(data => {
       if (data['statusCode'] === '1') {
-        this.toasterService.success('Vehicle Registered Successfully');
-        this.router.navigate(['/vehicleList']);
+        if (this.registeredFormFinal.driverLicenseNumber || this.registeredFormFinal.driverName || this.registeredFormFinal.driverPhone) {
+          this.apiRequestToDriverDetails(this.updateDriverDetails(registeredFormFinal, data['vehicleID']));
+        } else {
+          this.successService('Vehicle Registered Successfully');
+        }
       } else {
-        this.showLoader = false;
-        this.toasterService.error('Vehicle not Registered, Please register again!');
+        this.errorService('Vehicle not Registered, Please register again!');
       }
     }, error => {
-      this.showLoader = false;
-      this.toasterService.error('Unable to connect with server, Please try again!');
+      this.errorService('Unable to connect with server, Please try again!');
     });
+  }
+
+  apiRequestToDriverDetails(driverDetails: DriverDetails) {
+    this.apiService.callPostAPI('addDriverDetails', driverDetails).subscribe(data => {
+      if (data['statusCode'] === '1') {
+        this.successService('Vehicle Registered Successfully');
+      } else {
+        this.errorService('Vehicle not Registered, Please register again!');
+      }
+    }, error => {
+      this.errorService('Unable to connect with server, Please try again!');
+    });
+  }
+
+  successService(successMsg: string) {
+    this.showLoader = false;
+    this.toasterService.success(successMsg);
+    this.router.navigate(['/vehicleList']);
+  }
+
+  errorService(errMsg: string) {
+    this.showLoader = false;
+    this.toasterService.error(errMsg);
+  }
+
+  updateDriverDetails(formValue: RegisteredForm, vehicleID: number): DriverDetails {
+    this.driverDetails = {
+      driverName: formValue.driverName,
+      driverPhone: formValue.driverPhone,
+      driverLicenseNumber: formValue.driverLicenseNumber,
+      vehicleID
+    };
+    return this.driverDetails;
   }
 
   camerasFoundHandler(e) {
