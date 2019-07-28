@@ -8,7 +8,7 @@
   <div class="col-md-12 mainSection">
     <div class="seasonSection">
       <div class="seasonLabel">
-        <input type="text" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
+        <input type="text" (keypress)="isNumber($event)" name="fromDate" class="form-control inline-block " placeholder="Search by Vehicle Number" [(ngModel)]="searchedVehicleNumber"  (ngModelChange)="vehicleNumberOnChange()">
         <div class="inline-block searchIcon"><img src="../../../assets/images/search.png"></div>
         <span class="inline-block">{{ 'VEHICLEREGISTRATION.PeriodDuration' | translate}}</span>
         <select class="form-control inline-block" (change)="selectedSessonEvent($event)">

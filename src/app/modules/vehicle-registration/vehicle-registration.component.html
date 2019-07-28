@@ -26,12 +26,12 @@
                 <hr>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorName' | translate}}</label>
-                    <select class="form-control form-control-input" formControlName="vendorName"
-                        [ngClass]="{ 'is-invalid': submitted && f.vendorName?.errors }">
+                    <select class="form-control form-control-input" formControlName="vendorID"
+                        [ngClass]="{ 'is-invalid': submitted && f.vendorID?.errors }">
                         <option value="">{{ 'VEHICLEREGISTRATION.VENDOR.SelectVendorName' | translate}}</option>
                         <option *ngFor="let vendor of vendorList" [value]="vendor.id">{{vendor.name}}</option>
                     </select>
-                    <div class="invalid-feedback" *ngIf="submitted && !!f.vendorName.errors?.required">
+                    <div class="invalid-feedback" *ngIf="submitted && !!f.vendorID.errors?.required">
                         <sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.Pleaseselectvendorname' | translate}}
                     </div>
                 </div>
@@ -45,35 +45,35 @@
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddress' | translate}}</label>
-                    <input formControlName="VendorAddress" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.vendorAddress' | translate}}</label>
+                    <input formControlName="vendorAddress" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.VendorAddress?.errors }">
-                    <div *ngIf="submitted && !!f.VendorAddress?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.VendorAddress?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.VendorAddressrequired' | translate}}</div>
-                        <div *ngIf="!!f.VendorAddress?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.vendorAddress?.errors }">
+                    <div *ngIf="submitted && !!f.vendorAddress?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.vendorAddress?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.vendorAddressrequired' | translate}}</div>
+                        <div *ngIf="!!f.vendorAddress?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerName' | translate}}</label>
-                    <input formControlName="TransportOfficerName" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerName' | translate}}</label>
+                    <input formControlName="transportOfficerName" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerName?.errors }">
-                    <div *ngIf="submitted && !!f.TransportOfficerName?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.TransportOfficerName?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerNamerequired' | translate}}</div>
-                        <div *ngIf="!!f.TransportOfficerName?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.transportOfficerName?.errors }">
+                    <div *ngIf="submitted && !!f.transportOfficerName?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.transportOfficerName?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerNamerequired' | translate}}</div>
+                        <div *ngIf="!!f.transportOfficerName?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
                 <div class="formLabel form-group">
-                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContact' | translate}}</label>
-                    <input formControlName="TransportOfficerContact" type="text" name=""
+                    <label>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerContact' | translate}}</label>
+                    <input formControlName="transportOfficerContact" type="text" name=""
                         class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.TransportOfficerContact?.errors }">
-                    <div *ngIf="submitted && !!f.TransportOfficerContact?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.TransportOfficerContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.TransportOfficerContactrequired' | translate}}</div>
-                        <div *ngIf="!!f.TransportOfficerContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
+                        [ngClass]="{ 'is-invalid': submitted && !!f.transportOfficerContact?.errors }">
+                    <div *ngIf="submitted && !!f.transportOfficerContact?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.transportOfficerContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VENDOR.transportOfficerContactrequired' | translate}}</div>
+                        <div *ngIf="!!f.transportOfficerContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}
                         </div>
                     </div>
                 </div>
@@ -116,14 +116,14 @@
                         </div>
                     </div>
                     <div class="formLabel form-group">
-                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehicle' | translate}}</label>
-                        <input formControlName="CapacityOfVehicle" type="text" name=""
+                        <label>{{ 'VEHICLEREGISTRATION.VEHICLE.capacityOfVehicle' | translate}}</label>
+                        <input formControlName="capacityOfVehicle" type="text" name=""
                             class="form-control form-control-input"
-                            [ngClass]="{ 'is-invalid': submitted && !!f.CapacityOfVehicle?.errors }">
-                        <div *ngIf="submitted && !!f.CapacityOfVehicle?.errors" class="invalid-feedback">
-                            <div *ngIf="!!f.CapacityOfVehicle?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.CapacityOfVehiclerequired' | translate}}
+                            [ngClass]="{ 'is-invalid': submitted && !!f.capacityOfVehicle?.errors }">
+                        <div *ngIf="submitted && !!f.capacityOfVehicle?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.capacityOfVehicle?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.capacityOfVehiclerequired' | translate}}
                             </div>
-                            <div *ngIf="!!f.CapacityOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                            <div *ngIf="!!f.capacityOfVehicle?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
                 </div>
@@ -171,15 +171,15 @@
                     </div>
                     <div class="formLabel form-group">
                         <label>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormA' | translate}}</label>
-                        <input formControlName="formCorAnumber" type="text" name=""
+                        <input formControlName="formCorANumber" type="text" name=""
                             class="form-control form-control-input"
-                            [ngClass]="{ 'is-invalid': submitted && !!f.formCorAnumber?.errors }">
+                            [ngClass]="{ 'is-invalid': submitted && !!f.formCorANumber?.errors }">
                             <div *ngIf="formCorFormAFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="formCorFormADownloadUrl" target="_blank">{{formCorFormAFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="formCorFormAFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
                         <div class="invalid-feedback" *ngIf="submitted && !formCorFormAFile && !getStatusChecked">*{{ 'VEHICLEREGISTRATION.FileRequired' | translate}}</div>
-                        <div *ngIf="submitted && !!f.formCorAnumber?.errors" class="invalid-feedback">
-                            <div *ngIf="!!f.formCorAnumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
+                        <div *ngIf="submitted && !!f.formCorANumber?.errors" class="invalid-feedback">
+                            <div *ngIf="!!f.formCorANumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.VEHICLE.FormCorFormAisrequired' | translate}}
                             </div>
-                            <div *ngIf="!!f.formCorAnumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                            <div *ngIf="!!f.formCorANumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                         </div>
                     </div>
                     <div class="fileUploadIcon formLabel">
@@ -278,7 +278,7 @@
         </div>
         <div class="vehicleFooter">
             <div class="pull-right form-group">
-                <button class="btn btn-success">{{ 'Submit' | translate}}</button>
+                <button class="btn btn-success">{{ 'Submit' | translate}}<span *ngIf="showLoader">...</span> </button>
             </div>
         </div>
     </form>
