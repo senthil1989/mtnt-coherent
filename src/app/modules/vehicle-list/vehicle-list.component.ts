@@ -176,4 +176,12 @@ export class VehicleListComponent implements OnInit {
   vendorStatusSelectEvent(e) {
     this.vendorStatusSelect = e.srcElement.checked ? e.srcElement.name : undefined;
   }
+
+  isNumber(evt) {
+    const charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 }
