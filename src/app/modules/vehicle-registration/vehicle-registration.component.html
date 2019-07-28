@@ -207,21 +207,21 @@
                 </div>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.DriverContact' | translate}} <span>{{ 'Optional' | translate}}</span></label>
-                    <input formControlName="driverContact" type="text" name="" class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.driverContact?.errors }">
-                    <div *ngIf="submitted && !!f.driverContact?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.driverContact?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.DriverName' | translate}}</div>
-                        <div *ngIf="!!f.driverContact?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                    <input formControlName="driverPhone" type="text" name="" class="form-control form-control-input"
+                        [ngClass]="{ 'is-invalid': submitted && !!f.driverPhone?.errors }">
+                    <div *ngIf="submitted && !!f.driverPhone?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.driverPhone?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.DriverName' | translate}}</div>
+                        <div *ngIf="!!f.driverPhone?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                     </div>
                 </div>
                 <div class="formLabel form-group">
                     <label>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumber' | translate}} <span>{{ 'Optional' | translate}}</span></label>
-                    <input formControlName="licenseNumber" type="text" name="" class="form-control form-control-input"
-                        [ngClass]="{ 'is-invalid': submitted && !!f.licenseNumber?.errors }">
+                    <input formControlName="driverLicenseNumber" type="text" name="" class="form-control form-control-input"
+                        [ngClass]="{ 'is-invalid': submitted && !!f.driverLicenseNumber?.errors }">
                         <div *ngIf="licenseFile"><img src='../../../assets/images/attach-icon.png' width="20" class="attachIcon"><a [href]="licenseDownloadUrl" target="_blank">{{licenseFile?.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="removeButton" (click)="licenseFile = null">{{ 'VEHICLEREGISTRATION.Remove' | translate}}</a></div>
-                    <div *ngIf="submitted && !!f.licenseNumber?.errors" class="invalid-feedback">
-                        <div *ngIf="!!f.licenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
-                        <div *ngIf="!!f.licenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
+                    <div *ngIf="submitted && !!f.driverLicenseNumber?.errors" class="invalid-feedback">
+                        <div *ngIf="!!f.driverLicenseNumber?.errors.required"><sup>*</sup>{{ 'VEHICLEREGISTRATION.DRIVER.LicenseNumberisrequired' | translate}}</div>
+                        <div *ngIf="!!f.driverLicenseNumber?.errors?.minlength"><sup>*</sup>{{ 'Minimumlengthrequired' | translate}}</div>
                     </div>                    
                 </div>
                 <div class="fileUploadIcon formLabel">
