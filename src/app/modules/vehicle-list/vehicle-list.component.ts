@@ -38,11 +38,14 @@ export class VehicleListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
-      this.sessonList = data['sessonList'];
-    });
-    this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
+    // this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
+    //   this.sessonList = data['sessonList'];
+    // });
+    this.apiService.callPostAPI('getVehicleDetails', {}).subscribe(data => {
       this.vehicleList = data['vehicleList'];
+      this.vehicleList.forEach((val, i) => {
+        this.vehicleList[i].softDelete = val.softDelete ? 'Actve' : 'Inactive';
+      });
       this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
@@ -127,8 +130,8 @@ export class VehicleListComponent implements OnInit {
   get uniqueVendorNameList() {
     const uniqueVendorNames = [];
     this.vehicleList.forEach((val) => {
-      if (uniqueVendorNames.indexOf(val['vendorname']) === -1) {
-        uniqueVendorNames.push(val['vendorname']);
+      if (uniqueVendorNames.indexOf(val['vendorName']) === -1) {
+        uniqueVendorNames.push(val['vendorName']);
       }
     });
     return uniqueVendorNames;
