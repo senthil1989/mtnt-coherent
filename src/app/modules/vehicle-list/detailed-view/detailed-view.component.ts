@@ -11,6 +11,7 @@ import { VehicleList } from '../vehicle-list-interface/vehicle-list.interface';
 export class DetailedViewComponent implements OnInit {
   @Input() vehicleList: VehicleList[];
   @Input() vehicleDetailIndex: number;
+  @Input() documentDetails: Document;
   @Output() detailedViewCloseEvent = new EventEmitter();
   public vehicle: VehicleList;
   constructor() { }
