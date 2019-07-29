@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../core/services/api.service';
 import { VehicleList } from './vehicle-list-interface/vehicle-list.interface';
+import { Document } from '../vehicle-registration/vehicle-registration-interface/vehicle-registration.interface';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -27,6 +28,7 @@ export class VehicleListComponent implements OnInit {
   public selectTypeOfVehicle: string[] = [];
   public vehicleStatusSelect: string;
   public vendorStatusSelect: string;
+  public documentDetails: any;
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler() {
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
@@ -38,11 +40,14 @@ export class VehicleListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
-      this.sessonList = data['sessonList'];
-    });
-    this.apiService.callGetAPI('../../../assets/json/vehicleList.json').subscribe(data => {
+    // this.apiService.callGetAPI('../../../assets/json/sessonList.json').subscribe(data => {
+    //   this.sessonList = data['sessonList'];
+    // });
+    this.apiService.callPostAPI('getVehicleDetails', {}).subscribe(data => {
       this.vehicleList = data['vehicleList'];
+      this.vehicleList.forEach((val, i) => {
+        this.vehicleList[i].softDelete = val.softDelete ? 'Actve' : 'Inactive';
+      });
       this.rowSubMenu = this.vehicleList.map(_ => false);
     });
   }
@@ -88,8 +93,16 @@ export class VehicleListComponent implements OnInit {
 
   viewOrEditClickEvent(i: number) {
     this.vehicleDetailIndex = i;
+    this.getDocumentDetailsApi(this.vehicleDetailIndex);
     this.showDetailedView = true;
     this.rowSubMenu = this.rowSubMenu.map(_ => false);
+  }
+
+  getDocumentDetailsApi(vehicleDetailIndex) {
+    this.apiService.callPostAPI(`getDocumentDetails`, {vehicleId : this.vehicleList[vehicleDetailIndex].vehicleid}).subscribe(data => {
+      this.documentDetails =  data;
+      console.log(this.documentDetails);
+    });
   }
 
   vendorNameSelectList(e) {
@@ -127,8 +140,8 @@ export class VehicleListComponent implements OnInit {
   get uniqueVendorNameList() {
     const uniqueVendorNames = [];
     this.vehicleList.forEach((val) => {
-      if (uniqueVendorNames.indexOf(val['vendorname']) === -1) {
-        uniqueVendorNames.push(val['vendorname']);
+      if (uniqueVendorNames.indexOf(val['vendorName']) === -1) {
+        uniqueVendorNames.push(val['vendorName']);
       }
     });
     return uniqueVendorNames;

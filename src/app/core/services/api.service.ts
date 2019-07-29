@@ -30,10 +30,10 @@ export class ApiService {
   headers = () => {
     // this.authorization = this.authService.decryption();
     this.apiHeaders = new HttpHeaders();
-    this.apiHeaders.headers['Accept'] = 'application/json';
-    this.apiHeaders.headers['X-REQUEST-TYPE'] = 'web';
+    this.apiHeaders.headers['content-type'] = 'application/json';
+    // this.apiHeaders.headers['X-REQUEST-TYPE'] = 'web';
 
-      this.apiHeaders.headers['X-LANGUAGE-CODE'] = 'en';
+      // this.apiHeaders.headers['X-LANGUAGE-CODE'] = 'en';
     // if (this.authorization.hasOwnProperty('response')) {
     //   this.apiHeaders.headers['Authorization'] = 'Bearer ' + this.authorization.response.access_token;
     // }
