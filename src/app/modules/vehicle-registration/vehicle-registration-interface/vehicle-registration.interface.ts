@@ -32,3 +32,12 @@ export interface DriverDetails {
     driverLicenseNumber: string;
     vehicleID: number;
 }
+
+export interface Document {
+    isInsuranceUploaded: number;
+    isRoadWorthyUploaded: number;
+    isFormCorACertUploaded: number;
+    isDrivingLicenceUploaded: number;
+    documentLocation: string;
+    vehicleID: number;
+}

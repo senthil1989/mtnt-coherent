@@ -53,10 +53,10 @@
       <h2 class="inline-block">{{ 'DETAILEDVIEW.DocumentsUploaded' | translate}}</h2>
       <hr>
       <div class="clearfix"></div>
-      <p><span><a href="#"> Insurance_document.pdf </a>,</span></p>
-      <p><span><a href="#"> Road-Worthy Document.pdf </a>,</span></p>
-      <p><span><a href="#"> Form C or Form A.pdf </a>,</span></p>
-      <p><span><a href="#"> Driving License.pdf </a></span></p>
+      <p *ngIf="documentDetails.isInsuranceUploaded"><span><a [href]="documentDetails.documentLocation"> Insurance_document.pdf </a>,</span></p>
+      <p *ngIf="documentDetails.isRoadWorthyUploaded"><span><a [href]="documentDetails.documentLocation"> Road-Worthy Document.pdf </a>,</span></p>
+      <p *ngIf="documentDetails.isFormCorACertUploaded"><span><a [href]="documentDetails.documentLocation"> Form C or Form A.pdf </a>,</span></p>
+      <p *ngIf="documentDetails.isDrivingLicenceUploaded"><span><a [href]="documentDetails.documentLocation"> Driving License.pdf </a></span></p>
     </div>
     <div class="clearfix"></div>
   </div>

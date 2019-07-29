@@ -1,5 +1,5 @@
 <div class="container vehicleList">
-    <app-detailed-view *ngIf="showDetailedView" [vehicleList]="vehicleList" [vehicleDetailIndex]="vehicleDetailIndex" (detailedViewCloseEvent)="detailedViewCloseEvent()"></app-detailed-view>
+    <app-detailed-view *ngIf="showDetailedView" [documentDetails]="documentDetails" [vehicleList]="vehicleList" [vehicleDetailIndex]="vehicleDetailIndex" (detailedViewCloseEvent)="detailedViewCloseEvent()"></app-detailed-view>
   <header>
     <h3>{{ 'VEHICLELIST.VehicleList.VehicleList' | translate}}</h3>		
     <div class="logo"><img src="../../../assets/images/olamcocoa.png"></div>

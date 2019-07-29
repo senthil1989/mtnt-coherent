@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../core/services/api.service';
 import { VehicleList } from './vehicle-list-interface/vehicle-list.interface';
+import { Document } from '../vehicle-registration/vehicle-registration-interface/vehicle-registration.interface';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -27,6 +28,7 @@ export class VehicleListComponent implements OnInit {
   public selectTypeOfVehicle: string[] = [];
   public vehicleStatusSelect: string;
   public vendorStatusSelect: string;
+  public documentDetails: any;
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKeydownHandler() {
     this.tableHeaderFilter = this.tableHeaderFilter.map(_ => false);
@@ -91,8 +93,16 @@ export class VehicleListComponent implements OnInit {
 
   viewOrEditClickEvent(i: number) {
     this.vehicleDetailIndex = i;
+    this.getDocumentDetailsApi(this.vehicleDetailIndex);
     this.showDetailedView = true;
     this.rowSubMenu = this.rowSubMenu.map(_ => false);
+  }
+
+  getDocumentDetailsApi(vehicleDetailIndex) {
+    this.apiService.callPostAPI(`getDocumentDetails`, {vehicleId : this.vehicleList[vehicleDetailIndex].vehicleid}).subscribe(data => {
+      this.documentDetails =  data;
+      console.log(this.documentDetails);
+    });
   }
 
   vendorNameSelectList(e) {

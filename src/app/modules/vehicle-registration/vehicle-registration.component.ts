@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { ApiService } from '../../core/services/api.service';
 import { ModalService } from '../../core/services/model.service';
-import { RegisteredForm, DriverDetails } from './vehicle-registration-interface/vehicle-registration.interface';
+import { RegisteredForm, DriverDetails, Document } from './vehicle-registration-interface/vehicle-registration.interface';
 
 
 @Component({
@@ -45,6 +45,20 @@ export class VehicleRegistrationComponent implements OnInit {
   public showLoader = false;
   public registeredFormFinal: RegisteredForm;
   public driverDetails: DriverDetails;
+  public uploadDocumentPath: Document = {
+    documentLocation: '',
+    isDrivingLicenceUploaded: 0,
+    isFormCorACertUploaded: 0,
+    isInsuranceUploaded: 0,
+    isRoadWorthyUploaded: 0,
+    vehicleID: null
+  };
+  public defaultDocLoc = 'C:\/Users\/User\/Documents';
+  public isInc: number;
+  public isroad: number;
+  public isFormA: number;
+  public isLic: number;
+
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
     private modalService: ModalService,
@@ -189,7 +203,11 @@ export class VehicleRegistrationComponent implements OnInit {
       if (data['statusCode'] === '1') {
         if (this.registeredFormFinal.driverLicenseNumber || this.registeredFormFinal.driverName || this.registeredFormFinal.driverPhone) {
           this.apiRequestToDriverDetails(this.updateDriverDetails(registeredFormFinal, data['vehicleID']));
-        } else {
+        } else if (this.uploadDocumentPath.isDrivingLicenceUploaded ||
+           this.uploadDocumentPath.isFormCorACertUploaded ||
+            this.uploadDocumentPath.isInsuranceUploaded || this.uploadDocumentPath.isRoadWorthyUploaded) {
+          this.apiRequestToDocumentUpload(this.uploadDocumentPath, data['vehicleID']);
+         } else {
           this.successService('Vehicle Registered Successfully');
         }
       } else {
@@ -202,6 +220,25 @@ export class VehicleRegistrationComponent implements OnInit {
 
   apiRequestToDriverDetails(driverDetails: DriverDetails) {
     this.apiService.callPostAPI('addDriverDetails', driverDetails).subscribe(data => {
+      if (data['statusCode'] === '1') {
+        if (this.uploadDocumentPath.isDrivingLicenceUploaded ||
+          this.uploadDocumentPath.isFormCorACertUploaded ||
+           this.uploadDocumentPath.isInsuranceUploaded || this.uploadDocumentPath.isRoadWorthyUploaded) {
+          this.apiRequestToDocumentUpload(this.uploadDocumentPath, driverDetails.vehicleID);
+           } else {
+        this.successService('Vehicle Registered Successfully');
+      }
+      } else {
+        this.errorService('Vehicle not Registered, Please register again!');
+      }
+    }, error => {
+      this.errorService('Unable to connect with server, Please try again!');
+    });
+  }
+
+  apiRequestToDocumentUpload(uploadDocument: Document, vehicleID: number) {
+    uploadDocument.vehicleID = vehicleID;
+    this.apiService.callPostAPI('addDocumentDetails', uploadDocument).subscribe(data => {
       if (data['statusCode'] === '1') {
         this.successService('Vehicle Registered Successfully');
       } else {
@@ -270,19 +307,33 @@ export class VehicleRegistrationComponent implements OnInit {
 
   fileSelected(whichFile: string, file: File) {
     if (whichFile === 'insurance') {
+      this.isInc = 1;
       this.insuranceFile = file['path'][0].files[0];
       this.insuranceDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.insuranceFile));
     } else if (whichFile === 'roadWorthy') {
+      this.isroad = 1;
       this.roadWorthyFile = file['path'][0].files[0];
       this.roadWorthyDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.roadWorthyFile));
     } else if (whichFile === 'formCorA') {
+      this.isFormA = 1;
       this.formCorFormAFile = file['path'][0].files[0];
       this.formCorFormADownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.formCorFormAFile));
     } else if (whichFile === 'license') {
+      this.isLic = 1;
       this.licenseFile = file['path'][0].files[0];
       this.licenseDownloadUrl = this.sanitizeUrl(URL.createObjectURL(this.licenseFile));
     }
-    }
+    this.uploadDocumentPath = {
+      isDrivingLicenceUploaded: this.isLic,
+      isFormCorACertUploaded: this.isFormA,
+      isInsuranceUploaded: this.isInc,
+      isRoadWorthyUploaded: this.isroad,
+      documentLocation : this.defaultDocLoc,
+      vehicleID : null
+    };
+    console.log(this.uploadDocumentPath);
+
+  }
 
   statusChangeEvent(e) {
     this.getStatusChecked = e.srcElement.checked;
