@@ -49,8 +49,8 @@
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VehicleStatus' | translate}}<span *ngIf="vehicleStatusSelect">*</span><i (click)="openFilterMenu(2)" class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="filterSubMenu" *ngIf="tableHeaderFilter[2]">
                 <ul>
-                  <li><label class="filter"><input type="checkbox" name="Blocked" [checked]="vehicleStatusSelect === 'Blocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Blocked' | translate}}</li>
-                  <li><label class="filter"><input type="checkbox" name="Unblocked" [checked]="vehicleStatusSelect === 'Unblocked'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblocked' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Block" [checked]="vehicleStatusSelect === 'Block'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Block' | translate}}</li>
+                  <li><label class="filter"><input type="checkbox" name="Unblock" [checked]="vehicleStatusSelect === 'Unblock'" (change)="vehicleStatusSelectEvent($event)"><span class="checkmark"></span></label>{{ 'VEHICLELIST.VehicleList.Unblock' | translate}}</li>
                 </ul>
               </div></th>
             <th scope="col">{{ 'VEHICLELIST.VehicleList.VendorStatus' | translate}}<span *ngIf="vendorStatusSelect">*</span><i (click)="openFilterMenu(3)" class="fa fa-angle-down" aria-hidden="true"></i>
@@ -65,13 +65,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let vehicle of vehicleList | vehicleNumberFilter:selectTypeOfVehicle:selectedVendorNames:vehicleStatusSelect:vendorStatusSelect:searchedVehicleNumber;let i = index" [ngClass]="{rowHighlight: rowSubMenu[i]}">
-            <td>{{ vehicle.vendorname }}</td>
-            <td>{{ vehicle.registeredDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ vehicle.vendorName }}</td>
+            <td>{{ vehicle.createdTime | date: 'dd-MM-yyyy' }}</td>
             <td>{{ vehicle.vehicleNumber }}</td>
             <td>{{ vehicle.typeOfVehicle }}</td>
             <td>{{ vehicle.vendorContact }}</td>
-            <td>{{ vehicle.vehicleStatus }}</td>
-            <td>{{ vehicle.vendorStatus }}</td>
+            <td>{{ vehicle.status }}</td>
+            <td>{{ vehicle.softDelete }}</td>
             <td class="rowSubMenu"><img  (click)="openRowSubMenu(i)" src="../../../assets/images/menu-item.png" class="subMenuItem">
               <div class="filterSubMenu listItemVED" *ngIf="rowSubMenu[i]">
               <ul>

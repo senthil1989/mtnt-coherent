@@ -58,6 +58,7 @@ export class VehicleRegistrationComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       vehicleNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
       chassisNumber: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(45)]],
+      vendorName: ['', [Validators.required, Validators.minLength(0)]],
       QRCode: ['', [Validators.minLength(0)]],
       typeOfVehicle: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(20)]],
       insuranceNumber: ['', [Validators.required, Validators.minLength(0)]],
@@ -171,9 +172,10 @@ export class VehicleRegistrationComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    const currentTimeStamp = Math.round(new Date().getTime() / 1000);
+    const currentTimeStamp = new Date().getTime();
     this.registerForm.controls['createdTime'].setValue(currentTimeStamp);
     this.submitted = true;
+    this.registerForm.controls['vendorName'].setValue(this.vendorList.filter(val => val.id === this.registerForm.value.vendorID)[0].name);
     if (this.registerForm.invalid || (!this.getStatusChecked && (!this.insuranceFile || !this.roadWorthyFile || !this.formCorFormAFile || !this.qrCodeNumber))) {
       return;
     }

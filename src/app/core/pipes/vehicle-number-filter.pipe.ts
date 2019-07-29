@@ -26,7 +26,7 @@ export class VehicleNumberFilterPipe implements PipeTransform {
 
   getFilteredVehicleStatus(value: object[], vehicleStatusSelect: string) {
     if (vehicleStatusSelect) {
-      return value.filter(val => val['vehicleStatus'] === vehicleStatusSelect);
+      return value.filter(val => val['status'].toLowerCase() === vehicleStatusSelect.toLowerCase());
     } else {
       return value;
     }
@@ -34,7 +34,7 @@ export class VehicleNumberFilterPipe implements PipeTransform {
 
   getFilteredVendorStatus(value: object[], vendorStatusSelect: string) {
     if (vendorStatusSelect) {
-      return value.filter(val => val['vendorStatus'] === vendorStatusSelect);
+      return value.filter(val => val['softDelete'].toLowerCase() === vendorStatusSelect.toLowerCase());
     } else {
       return value;
     }
@@ -44,7 +44,7 @@ export class VehicleNumberFilterPipe implements PipeTransform {
     const finalArray = [];
     arr1.forEach(element1 => {
       arr2.forEach(element2 => {
-        if (element1.vendorname === element2) {
+        if (element1.vendorName === element2) {
           finalArray.push(element1);
         }
       });
